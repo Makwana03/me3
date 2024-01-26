@@ -1,5 +1,4 @@
 # openfashion-flutter
-# openfashion-flutter
 
 Let's create a our first version of open fashion app with 7 below screen. Make sure all screen in 
 MVC Model formate.
