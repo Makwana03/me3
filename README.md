@@ -1,16 +1,32 @@
-# openfashion-flutter
+# QuizBook Flutter Mobile Application
+QuizBook Flutter Project
 
-Let's create a our first version of open fashion app with 7 below screen. Make sure all screen in 
-MVC Model formate.
+## Project Setup
 
-1) Home Screen
-2) Category Scre
-3) Product Detail Screen 
-4) Checkout Screen 
-5) Place Order Screen 
-6) Add Shipping Address Screen 
-7) Payment Success Screen 
+### Sofotware version
+1. flutter : `3.16.9`
 
-Figma link : https://www.figma.com/file/CZhMNBM3Vkl70BJDvLtfkV/Open-Fashion---Free-eCommerce-UI-Kit-(Community)?type=design&node-id=417-615&mode=design&t=JqeiWx7iqnXuKLai-0
 
-for first version please refer "User Module" only
+### Start Developoment
+
+1. Terminal/VS Code Setup
+
+2. Clone this repository
+```bash
+cd ~/code/
+git clone git@github.com:rudraithub/openfashion-flutter.git
+cd openfashion-flutter
+code . 
+```
+
+3. Change your code as per requirement
+
+4. Validated code build is successful
+
+```bash
+flutter --version
+flutter pub get
+flutter run
+flutter analyze
+```
+
