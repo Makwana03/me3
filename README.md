@@ -4,7 +4,7 @@ Let's create a our first version of open fashion app with 7 below screen. Make s
 MVC Model formate.
 
 1) Home Screen
-2) Category Screen
+2) Category Scre
 3) Product Detail Screen 
 4) Checkout Screen 
 5) Place Order Screen 
