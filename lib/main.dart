@@ -36,7 +36,7 @@ class MyHomePage extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GridItem(),
+            GridItem(height: 50,width: 50,),
             SizedBox(
               width: 200,
               child: CommonTextFormField(

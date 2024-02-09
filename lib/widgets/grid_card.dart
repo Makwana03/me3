@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:open__fashion/utils/constans.dart';
 
 class GridItem extends StatelessWidget {
-  const GridItem({super.key});
+  const GridItem({super.key , required this.height , required this.width});
+  final double height;
+  final double width;
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +17,8 @@ class GridItem extends StatelessWidget {
             Image.asset(
               'assets/images/image.png',
               fit: BoxFit.cover,
+              height: height,
+              width: width,
               // width: double.infinity,
             ),
             Positioned(
