@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:open__fashion/utils/constans.dart';
-import 'package:open__fashion/utils/utility.dart';
+
+import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/utils/utility.dart';
 
 class CommonTextFormField extends StatelessWidget {
   final TextEditingController controller;

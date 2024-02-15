@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open__fashion/utils/constans.dart';
+
+import '../utils/constans.dart';
 
 class CommonAppBarScreen extends StatelessWidget {
   const CommonAppBarScreen({
@@ -10,7 +11,7 @@ class CommonAppBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        icon: Icon(Icons.menu_open_sharp),
+        icon: const Icon(Icons.menu_open_sharp),
         onPressed: () {},
       ),
       backgroundColor: whiteColor,
@@ -22,13 +23,13 @@ class CommonAppBarScreen extends StatelessWidget {
       centerTitle: true,
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.search_outlined),
+          icon: const Icon(Icons.search_outlined),
           onPressed: () {
             // Add your first action button action here
           },
         ),
         IconButton(
-          icon: Icon(Icons.shopping_bag_outlined),
+          icon: const Icon(Icons.shopping_bag_outlined),
           onPressed: () {
             // Add your second action button action here
           },
