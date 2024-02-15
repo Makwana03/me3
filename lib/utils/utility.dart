@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:intl/intl.dart';
-import 'package:open__fashion/widgets/pogress_indicator.dart';
+import 'package:open_fashion__1/widgets/pogress_indicator.dart';
 
 class Utility {
   static String getRandomString({int length = 10}) {

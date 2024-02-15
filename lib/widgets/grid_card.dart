@@ -1,60 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:open__fashion/utils/constans.dart';
+import 'package:open_fashion__1/utils/constans.dart';
 
 class GridItem extends StatelessWidget {
-  const GridItem({super.key , required this.height , required this.width});
+  const GridItem({super.key , required this.height , required this.width ,required this.image , required this.isCenter});
   final double height;
+  final String image;
   final double width;
+  final bool isCenter;
 
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:isCenter ?  CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         Stack(
           children: [
             Image.asset(
-              'assets/images/image.png',
+              image,
               fit: BoxFit.cover,
               height: height,
               width: width,
-              // width: double.infinity,
             ),
             Positioned(
               bottom: 0,
               right: 0,
               child: IconButton(
-                icon: Icon(Icons.favorite_border),
+                icon: const Icon(Icons.favorite_border),
                 color: goldColor,
                 onPressed: () {
-                  // Add your favorite action here
                 },
               ),
             ),
-            // Positioned(
-            //   bottom: 0,
-            //   left: 0,
-            //   right: 0,
-            //   child: Container(
-            //     color: Colors.black.withOpacity(0.5),
-            //     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            //     child: const Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       mainAxisSize: MainAxisSize.min,
-            //       children: [
-            //         Text(
-            //           "title",
-            //           style: TextStyle(color: Colors.white),
-            //         ),
-            //         Text(
-            //           "subTitle",
-            //           style: TextStyle(color: Colors.white),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+           
           ],
         ),
         const Text(

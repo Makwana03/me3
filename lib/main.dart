@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:open__fashion/utils/constans.dart';
-import 'package:open__fashion/widgets/common_app_bar.dart';
-import 'package:open__fashion/widgets/common_textfiled.dart';
-import 'package:open__fashion/widgets/grid_card.dart';
+
+import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/widgets/common_app_bar.dart';
+import 'package:open_fashion__1/widgets/common_textfiled.dart';
+import 'package:open_fashion__1/widgets/grid_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -31,12 +32,12 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController mobileController = TextEditingController();
     return Scaffold(
-        appBar: PreferredSize(
+        appBar: const PreferredSize(
             preferredSize: Size.fromHeight(60), child: CommonAppBarScreen()),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GridItem(height: 50,width: 50,),
+            const GridItem(height: 300,width: 250,image:  'assets/images/banner.png',isCenter: false,),
             SizedBox(
               width: 200,
               child: CommonTextFormField(
