@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/view/homepage_view.dart';
+import 'package:open_fashion__1/view/tab_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/common_textfiled.dart';
 import 'package:open_fashion__1/widgets/grid_card.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home:  FirstScreen(),
     );
   }
 }
@@ -29,7 +31,7 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {      
     TextEditingController mobileController = TextEditingController();
     return Scaffold(
         appBar: const PreferredSize(
