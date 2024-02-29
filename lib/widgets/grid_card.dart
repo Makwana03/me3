@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:open_fashion__1/utils/constans.dart';
 
 class GridItem extends StatelessWidget {
-  GridItem(
+  const GridItem(
       {super.key,
       required this.height,
       required this.width,
@@ -22,56 +22,66 @@ class GridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment:
-          isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-      children: [
-        Stack(
-          children: [
-            Image.asset(
-              image,
-              fit: BoxFit.cover,
-              // height: 200,
-              
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: IconButton(
-                icon: const Icon(Icons.favorite_border),
-                color: goldColor,
-                onPressed: () {},
+    return Padding(
+      padding: EdgeInsets.all(0),
+      child: Column(
+        crossAxisAlignment:
+            isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+        children: [
+          Stack(
+            children: [
+              Image.asset(
+                image,
+                fit: BoxFit.cover,
+                height: height,
+                // height: double.maxFinite -50,
+                width: double.maxFinite,
+                // height: 200,
               ),
-            ),
-          ],
-        ),
-        Text(
-          productname,
-          //textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'mp',
-            fontWeight: FontWeight.bold,
-            fontSize: MediaQuery.sizeOf(context).height * 0.02,
+              Positioned(
+                bottom: -10,
+                right: -10,
+                child: IconButton(
+                  icon: const Icon(Icons.favorite_border),
+                  color: goldColor,
+                  onPressed: () {},
+                ),
+              ),
+            ],
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 5,),
-          child: Text(
-            subname ,
+          const SizedBox(height: 5,),
+          Text(
+            productname,
+            //textAlign: TextAlign.center,
             style: TextStyle(
-                fontFamily: 'mp',
-                fontSize: MediaQuery.sizeOf(context).height * 0.015),
-          ),
-        ),
-        Text(
-          price,
-          style: TextStyle(
-            
               fontFamily: 'mp',
-              color: goldColor,
-              fontSize: MediaQuery.sizeOf(context).height * 0.018),
-        )
-      ],
+              fontWeight: FontWeight.bold,
+              overflow: TextOverflow.ellipsis,
+              fontSize: MediaQuery.sizeOf(context).height * 0.02,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 5,
+            ),
+            child: Text(
+              subname,
+              style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontFamily: 'mp',
+                  fontSize: MediaQuery.sizeOf(context).height * 0.015),
+            ),
+          ),
+          Text(
+            price,
+            style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+                fontFamily: 'mp',
+                color: goldColor,
+                fontSize: MediaQuery.sizeOf(context).height * 0.018),
+          )
+        ],
+      ),
     );
   }
 }

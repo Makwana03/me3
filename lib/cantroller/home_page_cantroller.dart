@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:open_fashion__1/model/home_page_model.dart';
 import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/view/product_view.dart';
 
 class ProductController extends ChangeNotifier {
   List<Product> products = [
@@ -28,34 +29,42 @@ class mygrid extends StatelessWidget {
   Widget build(BuildContext context) {
     double myheight = MediaQuery.of(context).size.height;
     double mywidth = MediaQuery.of(context).size.width;
-    return Column(
-      crossAxisAlignment:
-          isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-      children: [
-        Stack(
-          children: [
-            Image.asset(
-              image,
-              fit: BoxFit.cover,
-              height: height,
-              width: width,
-            ),
-          ],
-        ),
-        Text(
-          '21WN reversible angora',
-          style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
-        ),
-        Text(
-          'Cardigan',
-          style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
-        ),
-        Text(
-          "\$120",
-          style: TextStyle(
-              fontFamily: 'mp', color: goldColor, fontSize: myheight / 70),
-        )
-      ],
+    return InkWell
+  (
+    onTap: (){
+      print("Inkwell Call ");
+      // Get.to(ProductDetailView());
+      Navigator.push(context,MaterialPageRoute(builder: (context) => ProductDetailView(),));
+    },
+      child: Column(
+        crossAxisAlignment:
+            isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+        children: [
+          Stack(
+            children: [
+              Image.asset(
+                image,
+                fit: BoxFit.cover,
+                height: height,
+                width: width,
+              ),
+            ],
+          ),
+          Text(
+            '21WN reversible angora',
+            style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
+          ),
+          Text(
+            'Cardigan',
+            style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
+          ),
+          Text(
+            "\$120",
+            style: TextStyle(
+                fontFamily: 'mp', color: goldColor, fontSize: myheight / 70),
+          )
+        ],
+      ),
     );
   }
 }

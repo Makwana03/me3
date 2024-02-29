@@ -74,21 +74,27 @@ class _CategoriescreenState extends State<Categoriescreen> {
   }
 
   final ProductController productController = ProductController();
-  Widget _buildGridItem(int index) {
-    return GridItem(
-      height: 120,
-      width: 140,
-      image: categorylst[index].images,
-      isCenter: true,
-      productname: categorylst[index].name,
-      subname: categorylst[index].subname,
-      price: categorylst[index].price,
+  Widget _buildGridItem(int index ,double height , double weight) {
+    return  Container(
+      height: height,
+      width: weight,
+      // color: Colors.grey,
+      child: GridItem(
+        height: height,
+        width: weight,
+        image: categorylst[index].images,
+        isCenter: true,
+        productname: categorylst[index].name,
+        subname: categorylst[index].subname,
+        price: categorylst[index].price,
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = getScreenHeight(context);
+    double screenWidth = getScreenWidth(context);
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60),
@@ -112,20 +118,20 @@ class _CategoriescreenState extends State<Categoriescreen> {
                   return CustomScrollView(
                     slivers: [
                       SliverPadding(
-                        padding: const EdgeInsets.only(left: 9.0),
+                        padding: const EdgeInsets.only(left: 5.0,right: 5),
                         sliver: SliverGrid(
                           gridDelegate:
                                SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            mainAxisSpacing: 0.0,
-                            crossAxisSpacing: 0.0,
-                            childAspectRatio: screenHeight * 0.000778061,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: MediaQuery.of(context).size.height/MediaQuery.of(context).size.width/3.5,
                           ),
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
                               return SizedBox(
                                 height: screenHeight * 0.229591837,
-                                child: _buildGridItem(index),
+                                child: _buildGridItem(index , screenHeight * 0.26,screenWidth *0.178571429),
                               );
                             },
                             childCount: categorylst.length,
@@ -141,13 +147,12 @@ class _CategoriescreenState extends State<Categoriescreen> {
                              _currentPage >0 ?   IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      print("Tap");
                                       _currentPage = _currentPage - 1;
                                     });
                                   },
                                   icon:
                                       const Icon(Icons.arrow_back_ios_rounded),
-                                ) : SizedBox.shrink(),
+                                ) : const SizedBox.shrink(),
                                 const SizedBox(width: 5),
                                  _buildBottomNavigationBar(),
                                 

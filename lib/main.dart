@@ -5,7 +5,7 @@ import 'package:open_fashion__1/view/category_view.dart';
 import 'package:open_fashion__1/view/homepage_view.dart';
 import 'package:open_fashion__1/view/product_view.dart';
 
-import 'package:open_fashion__1/view/tab_view.dart';
+import 'package:open_fashion__1/view/tabs.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/common_textfiled.dart';
 import 'package:open_fashion__1/widgets/grid_card.dart';

@@ -12,7 +12,7 @@ import 'dart:math' as math;
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/cantroller/home_page_cantroller.dart';
 import 'package:open_fashion__1/view/category_view.dart';
-import 'package:open_fashion__1/view/tab_view.dart';
+import 'package:open_fashion__1/view/tabs.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/contact_details.dart';
 
@@ -156,9 +156,9 @@ class _FirstScreenState extends State<FirstScreen> {
                   fontFamily: "mp",
                   letterSpacing: 1),
             ),
-            Image.asset(
-              "assets/images/3.jpg",
-            ),
+             SvgPicture.asset(
+                    "assets/svg/5.svg",
+                  ),
             SizedBox(
               height: currentHeoght * 0.701530612,
 
