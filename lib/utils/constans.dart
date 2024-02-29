@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 double getScreenHeight(BuildContext context) {
+  // print(MediaQuery.of(context).size.height.toString());
   return MediaQuery.of(context).size.height;
 }
 

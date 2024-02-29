@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+
 import 'dart:math' as math;
 
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/cantroller/home_page_cantroller.dart';
+import 'package:open_fashion__1/view/category_view.dart';
 import 'package:open_fashion__1/view/tab_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
+import 'package:open_fashion__1/widgets/contact_details.dart';
+
 
 class FirstScreen extends StatefulWidget {
   FirstScreen({super.key});
@@ -20,6 +25,7 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+
   final _key = GlobalKey<FormState>();
   int _currentPage = 0;
 
@@ -85,6 +91,9 @@ class _FirstScreenState extends State<FirstScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double currentHeoght = getScreenHeight(context);
+    double currentWidht = getScreenWidth(context);
+
     double myheight = MediaQuery.of(context).size.height;
     double mywidth = MediaQuery.of(context).size.width;
 
@@ -116,7 +125,8 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 ),
                 Positioned.fill(
-                  bottom: 50,
+                  bottom: currentHeoght * 0.06377551,
+
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
@@ -149,8 +159,9 @@ class _FirstScreenState extends State<FirstScreen> {
             Image.asset(
               "assets/images/3.jpg",
             ),
-            Container(
-              height: 550,
+            SizedBox(
+              height: currentHeoght * 0.701530612,
+
               child: CustomTabView(),
             ),
             SizedBox(
@@ -167,18 +178,21 @@ class _FirstScreenState extends State<FirstScreen> {
                       fontSize: myheight * 0.02,
                       fontFamily: "mp"),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward))
+                IconButton(onPressed: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => Categoriescreen(),));
+                }, icon: const Icon(Icons.arrow_forward))
+
               ],
             ),
             SizedBox(
               height: myheight * 0.00,
             ),
             Container(
-              color: Color.fromARGB(255, 242, 242, 242),
+              color:const  Color.fromARGB(255, 242, 242, 242),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 15,
+                const  SizedBox(
+     height: 15,
                   ),
                   SvgPicture.asset(
                     "assets/svg/Logo.svg",
@@ -187,7 +201,8 @@ class _FirstScreenState extends State<FirstScreen> {
                     height: myheight * 0.04,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 45, right: 45),
+                    padding:  EdgeInsets.only(left: myheight * 0.057397959, right:  myheight * 0.057397959),
+
                     child: Text(
                       "Making a Luxurios Lifestyle accessible for a generous group of women is our daily drive",
                       textAlign: TextAlign.center,
@@ -211,8 +226,9 @@ class _FirstScreenState extends State<FirstScreen> {
                     children: [
                       Column(
                         children: [
-                          Image.asset(
-                            "assets/images/sStriker.png",
+                          SvgPicture.asset(
+                            "assets/svg/mp6.svg",
+
                           ),
                           Text(
                             "Fast Shiping. Free on",
@@ -235,8 +251,9 @@ class _FirstScreenState extends State<FirstScreen> {
                       ),
                       Column(
                         children: [
-                          Image.asset(
-                            "assets/images/f.jpg",
+                          SvgPicture.asset(
+                            "assets/svg/mp2.svg",
+
                           ),
                           Text(
                             "Sustainable process",
@@ -264,10 +281,11 @@ class _FirstScreenState extends State<FirstScreen> {
                     children: [
                       Column(
                         children: [
-                          Image.asset(
-                            "assets/images/g.jpg",
+                          SvgPicture.asset(
+                            "assets/svg/mp3.svg",
                           ),
-                          Text("Unique desings"),
+                   const       Text("Unique desings"),
+
                           Text(
                             "and high quality materials.",
                             style: TextStyle(
@@ -282,10 +300,11 @@ class _FirstScreenState extends State<FirstScreen> {
                       ),
                       Column(
                         children: [
-                          Image.asset(
-                            "assets/images/h.jpg",
+                          SvgPicture.asset(
+                            "assets/svg/mp5.svg",
                           ),
-                          Text("Fast shipping"),
+                 const         Text("Fast shipping"),
+
                           Text(
                             "free order over  \$25.",
                             style: TextStyle(
@@ -358,81 +377,16 @@ class _FirstScreenState extends State<FirstScreen> {
                   SizedBox(
                     height: myheight * 0.03,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    // crossAxisAlignment: CrossAxisAlignment.values,
-                    children: [
-                      SvgPicture.asset("assets/svg/twiter.svg"),
-                      SvgPicture.asset("assets/svg/instagram2.svg"),
-                      SvgPicture.asset("assets/svg/yt.svg"),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  SvgPicture.asset(
-                    "assets/svg/5.svg",
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    "support@mp.gmail.com",
-                    style: TextStyle(fontFamily: 'mp'),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "+60 825 876",
-                    style: TextStyle(fontFamily: 'mp'),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "08:00 - 20:00 - Everyday",
-                    style: TextStyle(fontFamily: 'mp'),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SvgPicture.asset(
-                    "assets/svg/5.svg",
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    // crossAxisAlignment: CrossAxisAlignment.values,
-                    children: [
-                      Text(
-                        "About",
-                        style: TextStyle(fontFamily: 'mp'),
-                      ),
-                      Text(
-                        "Contact",
-                        style: TextStyle(fontFamily: 'mp'),
-                      ),
-                      Text(
-                        "Blog",
-                        style: TextStyle(fontFamily: 'mp'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-
-                  // SvgPicture.asset("assets/svg/Footer.svg")
+              
+              ContactDetails(),
                 ],
               ),
             ),
-            SizedBox(
+          const  SizedBox(
               height: 15,
             ),
-            Text(
+         const   Text(
+
               "Copyright© OpenUI All Rights Reserved.",
               style: TextStyle(fontFamily: 'mp', fontSize: 12),
             ),
