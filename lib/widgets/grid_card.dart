@@ -57,7 +57,7 @@ class GridItem extends StatelessWidget {
               fontFamily: 'mp',
               fontWeight: FontWeight.bold,
               overflow: TextOverflow.ellipsis,
-              fontSize: MediaQuery.sizeOf(context).height * 0.02,
+              fontSize: 18,
             ),
           ),
           Padding(
@@ -69,7 +69,7 @@ class GridItem extends StatelessWidget {
               style: TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontFamily: 'mp',
-                  fontSize: MediaQuery.sizeOf(context).height * 0.015),
+                  fontSize:12),
             ),
           ),
           Text(
@@ -78,7 +78,7 @@ class GridItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 fontFamily: 'mp',
                 color: goldColor,
-                fontSize: MediaQuery.sizeOf(context).height * 0.018),
+                fontSize: 13.5),
           )
         ],
       ),

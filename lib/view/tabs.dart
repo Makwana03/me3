@@ -57,11 +57,10 @@ class CustomTabViewState extends State<CustomTabView>
               child: Text(
                 tab.text!,
                 style: const TextStyle(
-                  fontSize: 14, // Adjust font size as needed
+                  fontSize: 14, 
                   fontFamily: 'mp',
-                  fontWeight: FontWeight.bold, // Adjust font weight as needed
-                  fontStyle: FontStyle.italic, // Adjust font style as needed
-                  // You can add more text style properties here as needed
+                  fontWeight: FontWeight.bold, 
+                 
                 ),
               ),
             );

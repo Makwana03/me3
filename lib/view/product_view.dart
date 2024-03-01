@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/view/checkout_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 
 class ProductDetailView extends StatefulWidget {
@@ -119,17 +121,17 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   ),
                 ],
               ),
-              SizedBox(height: currentHeight * 0.005510204),
+              SizedBox(height: currentHeight * 0.01510204),
               Row(
                 children: [
                   const Text(
                     "Size",
-                    style: TextStyle(fontFamily: "mp", fontSize: 20),
+                    style: TextStyle(fontFamily: "mp", fontSize: 18),
                   ),
-                  SizedBox(width: currentHeight * 0.004),
+                  SizedBox(width: currentHeight * 0.01),
                   Expanded(
                     child: SizedBox(
-                      height: currentHeight * 0.051020408,
+                      height: currentHeight * 0.0428,
                       child: ListView.builder(
                         itemCount: ringSizes.length,
                         scrollDirection: Axis.horizontal,
@@ -181,7 +183,13 @@ class _ProductDetailViewState extends State<ProductDetailView> {
         ),
       ),
       bottomNavigationBar: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => first(),
+              ));
+        },
         child: Container(
           height: currentHeight * 0.076530612,
           width: double.infinity,

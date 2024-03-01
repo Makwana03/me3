@@ -12,6 +12,7 @@ import 'dart:math' as math;
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/cantroller/home_page_cantroller.dart';
 import 'package:open_fashion__1/view/category_view.dart';
+import 'package:open_fashion__1/view/demo.dart';
 import 'package:open_fashion__1/view/tabs.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/contact_details.dart';
@@ -36,6 +37,7 @@ class _FirstScreenState extends State<FirstScreen> {
         Expanded(
           child: Image.asset(
             page['image'],
+            width: double.maxFinite,
             fit: BoxFit.cover,
           ),
         ),
@@ -179,7 +181,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       fontFamily: "mp"),
                 ),
                 IconButton(onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => Categoriescreen(),));
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => ShoppingPage(),));
                 }, icon: const Icon(Icons.arrow_forward))
 
               ],

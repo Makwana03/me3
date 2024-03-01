@@ -28,13 +28,10 @@ class mygrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double myheight = MediaQuery.of(context).size.height;
-    double mywidth = MediaQuery.of(context).size.width;
     return InkWell
   (
     onTap: (){
-      print("Inkwell Call ");
-      // Get.to(ProductDetailView());
-      Navigator.push(context,MaterialPageRoute(builder: (context) => ProductDetailView(),));
+      Navigator.push(context,MaterialPageRoute(builder: (context) =>const ProductDetailView(),));
     },
       child: Column(
         crossAxisAlignment:

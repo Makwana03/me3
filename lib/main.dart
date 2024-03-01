@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/view/category_view.dart';
+import 'package:open_fashion__1/view/checkout_view.dart';
 import 'package:open_fashion__1/view/homepage_view.dart';
 import 'package:open_fashion__1/view/product_view.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
