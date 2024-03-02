@@ -1,17 +1,14 @@
 // // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 import 'dart:math' as math;
 
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/cantroller/home_page_cantroller.dart';
-import 'package:open_fashion__1/view/category_view.dart';
 import 'package:open_fashion__1/view/demo.dart';
 import 'package:open_fashion__1/view/tabs.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';

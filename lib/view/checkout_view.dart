@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/view/check_2.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 
 class first extends StatefulWidget {
@@ -36,7 +34,7 @@ class _firstState extends State<first> {
 
     return MaterialApp(
       home: Scaffold(
-          appBar: PreferredSize(
+          appBar:const PreferredSize(
             preferredSize: Size.fromHeight(60),
             child: CommonAppBarScreen(),
           ),
@@ -102,7 +100,7 @@ class _firstState extends State<first> {
                           const SizedBox(
                             height: 8,
                           ),
-                          Text(
+                        const  Text(
                             "Recycle Boucle Knit Cardigan Pink",
                             style: TextStyle(fontSize: 12, fontFamily: 'mp'),
                           ),
@@ -137,7 +135,7 @@ class _firstState extends State<first> {
                               Text(
                                 '$quantity',
                                 style:
-                                    TextStyle(fontSize: 18, fontFamily: 'mp'),
+                                  const  TextStyle(fontSize: 18, fontFamily: 'mp'),
                               ),
                               const SizedBox(
                                 width: 12,
@@ -151,7 +149,7 @@ class _firstState extends State<first> {
                                   width: 20,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
+                                       const BorderRadius.all(Radius.circular(50)),
                                     border: Border.all(
                                         color: greyColor.withOpacity(0.4)),
                                     // color: greyColor
@@ -174,7 +172,7 @@ class _firstState extends State<first> {
                     ],
                   ),
                   const SizedBox(height: 20,),
-                 SizedBox(
+               const  SizedBox(
                     height: 20,
                     child: Divider(
                       thickness: 1.5,
@@ -182,13 +180,13 @@ class _firstState extends State<first> {
                   ),
                   Row(
                     children: [
-                      SizedBox(width: 25,),
+                    const  SizedBox(width: 25,),
                       SvgPicture.asset('assets/svg/door.svg'),
-                      SizedBox(width: 15,),
-                      Text("Add promo code",style: TextStyle(fontFamily: 'mp'),)
+                   const   SizedBox(width: 15,),
+                   const   Text("Add promo code",style: TextStyle(fontFamily: 'mp'),)
                     ],
                   ),
-                  SizedBox(
+                const  SizedBox(
                     height: 25,
                     child: Divider(
                       thickness: 1.5,
@@ -197,23 +195,23 @@ class _firstState extends State<first> {
                   
                   Row(
                     children: [
-                      SizedBox(width: 25,),
+                    const  SizedBox(width: 25,),
                       SvgPicture.asset('assets/svg/cupon.svg'),
-                      SizedBox(width: 15,),
-                      Text("Delivery",style: TextStyle(fontFamily: 'mp'),),
+                    const  SizedBox(width: 15,),
+                    const  Text("Delivery",style: TextStyle(fontFamily: 'mp'),),
 
-                      Spacer(),
-                      Text("Free",style: TextStyle(fontFamily: 'mp'),),
-                      SizedBox(width: 35,)
+                   const   Spacer(),
+                   const   Text("Free",style: TextStyle(fontFamily: 'mp'),),
+                   const   SizedBox(width: 35,)
                     ],
                   ),
-                 SizedBox(
+                const SizedBox(
                     height: 20,
                     child: Divider(
                       thickness: 1.5,
                     ),
                   ),
-                  Spacer(),
+                const  Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -247,15 +245,15 @@ class _firstState extends State<first> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
-                    shape: BeveledRectangleBorder()),
+                    shape:const BeveledRectangleBorder()),
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => Second(),
-                  //     ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Checkout(),
+                      ));
                 },
-                child: Text(
+                child:const Text(
                   'CHECKOUT',
                   style: TextStyle(color: Colors.white, fontFamily: 'mp'),
                 ),

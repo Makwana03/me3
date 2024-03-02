@@ -124,10 +124,10 @@ class CustomTabViewState extends State<CustomTabView>
             ],
           ),
         ),
-        TabPage(),
-        TabPage(),
-        TabPage(),
-        TabPage(),
+      const  TabPage(),
+     const   TabPage(),
+     const   TabPage(),
+     const   TabPage(),
       ]),
     );
   }

@@ -23,7 +23,7 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(0),
+      padding:const EdgeInsets.all(0),
       child: Column(
         crossAxisAlignment:
             isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
@@ -53,7 +53,7 @@ class GridItem extends StatelessWidget {
           Text(
             productname,
             //textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: 'mp',
               fontWeight: FontWeight.bold,
               overflow: TextOverflow.ellipsis,
@@ -66,7 +66,7 @@ class GridItem extends StatelessWidget {
             ),
             child: Text(
               subname,
-              style: TextStyle(
+              style:const TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontFamily: 'mp',
                   fontSize:12),
@@ -74,7 +74,7 @@ class GridItem extends StatelessWidget {
           ),
           Text(
             price,
-            style: TextStyle(
+            style:const TextStyle(
                 overflow: TextOverflow.ellipsis,
                 fontFamily: 'mp',
                 color: goldColor,

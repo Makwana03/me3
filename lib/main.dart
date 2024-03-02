@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
-import 'package:open_fashion__1/view/category_view.dart';
-import 'package:open_fashion__1/view/checkout_view.dart';
+import 'package:open_fashion__1/view/check_2.dart';
 import 'package:open_fashion__1/view/homepage_view.dart';
-import 'package:open_fashion__1/view/product_view.dart';
 
-import 'package:open_fashion__1/view/tabs.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/common_textfiled.dart';
 import 'package:open_fashion__1/widgets/grid_card.dart';
@@ -44,7 +41,7 @@ class MyHomePage extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             GridItem(height: 300,width: 250,image:  'assets/images/banner.png',isCenter: false,productname: "",subname: "",price: "",),
+             const GridItem(height: 300,width: 250,image:  'assets/images/banner.png',isCenter: false,productname: "",subname: "",price: "",),
             SizedBox(
               width: 200,
               child: CommonTextFormField(

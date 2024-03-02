@@ -24,13 +24,13 @@ class ShoppingPage extends StatefulWidget {
 }
 
 class _ShoppingPageState extends State<ShoppingPage> {
-  int _currentPageIndex = 0;
+  final int _currentPageIndex = 0;
 
   // List of items for the current page
-  List<String> _currentItems = List.generate(10, (index) => 'Item ${index + 1}');
+  final List<String> _currentItems = List.generate(10, (index) => 'Item ${index + 1}');
 
   // List of items for the next page
-  List<String> _nextItems = List.generate(10, (index) => 'Next Item ${index + 1}');
+  final List<String> _nextItems = List.generate(10, (index) => 'Next Item ${index + 1}');
   int _currentPage = 0;
 
   Widget _buildDot(int index) {
@@ -57,7 +57,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
   }
 
   Widget _buildGridItem(int index, double height, double width) {
-    return Container(
+    return  Container(
       height: height,
       width: width,
       child: GridItem(
@@ -99,13 +99,13 @@ class _ShoppingPageState extends State<ShoppingPage> {
         child: CommonAppBarScreen(),
       ),
       body: Padding(
-        padding: EdgeInsets.all(5),
+        padding:const EdgeInsets.all(5),
         child: ListView(
           children: [
             GridView.count(
               shrinkWrap: true,
               childAspectRatio: 0.64,
-              physics: NeverScrollableScrollPhysics(),
+              physics:const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
@@ -117,7 +117,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
               }).toList(),
             ),
             
-            SizedBox(height: 20),
+         const   SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -130,10 +130,10 @@ class _ShoppingPageState extends State<ShoppingPage> {
                         },
                         icon: const Icon(Icons.arrow_back_ios_rounded),
                       )
-                    : SizedBox.shrink(),
-                SizedBox(width: 5),
+                    :const SizedBox.shrink(),
+               const SizedBox(width: 5),
                 _buildBottomNavigationBar(),
-                SizedBox(width: 5),
+            const    SizedBox(width: 5),
                 Visibility(
                   visible: _currentPage < 4,
                   child: IconButton(
@@ -147,11 +147,11 @@ class _ShoppingPageState extends State<ShoppingPage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            SizedBox(
+        const    SizedBox(height: 20),
+          const  SizedBox(
               height: 70,
             ),
-            ContactDetails(),
+         const   ContactDetails(),
           ],
         ),
       ),
@@ -162,8 +162,8 @@ class _ShoppingPageState extends State<ShoppingPage> {
 class NextPage extends StatelessWidget {
   final List<String> items;
 
-  NextPage({required this.items});
-
+  const NextPage({super.key, required this.items});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,16 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:open_fashion__1/cantroller/category_cantroller.dart';
 import 'package:open_fashion__1/cantroller/home_page_cantroller.dart';
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/contact_details.dart';
 import 'package:open_fashion__1/widgets/grid_card.dart';
-import 'dart:math' as math;
 
 class Categoriescreen extends StatefulWidget {
-  Categoriescreen({super.key});
+const  Categoriescreen({super.key});
 
   @override
   State<Categoriescreen> createState() => _CategoriescreenState();
@@ -75,7 +72,7 @@ class _CategoriescreenState extends State<Categoriescreen> {
 
   final ProductController productController = ProductController();
   Widget _buildGridItem(int index ,double height , double weight) {
-    return  Container(
+    return   Container(
       height: height,
       width: weight,
       // color: Colors.grey,
@@ -107,7 +104,7 @@ class _CategoriescreenState extends State<Categoriescreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.9,
               child: PageView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics:const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 onPageChanged: (value) {
                   setState(() {
