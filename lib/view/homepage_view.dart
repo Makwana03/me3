@@ -35,7 +35,8 @@ class _FirstScreenState extends State<FirstScreen> {
           child: Image.asset(
             page['image'],
             width: double.maxFinite,
-            fit: BoxFit.cover,
+            // height: MediaQuery.of(context).size .height * 0.6,
+            fit: BoxFit.fill,
           ),
         ),
       ],
@@ -110,6 +111,7 @@ class _FirstScreenState extends State<FirstScreen> {
               children: [
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
+                  // height: ,
                   child: PageView.builder(
                     itemCount: _pages.length,
                     onPageChanged: (value) {

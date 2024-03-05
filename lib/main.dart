@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
-import 'package:open_fashion__1/view/check_2.dart';
 import 'package:open_fashion__1/view/homepage_view.dart';
+
+
 
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/common_textfiled.dart';

@@ -32,6 +32,10 @@ final mobileNumberFormater = FilteringTextInputFormatter.allow(RegExp('[0-9]'));
 
 final LengthLimitingTextInputFormatter mobileLengthFormatter =
     LengthLimitingTextInputFormatter(10);
+    final LengthLimitingTextInputFormatter zipCodeLengthFormatter =
+    LengthLimitingTextInputFormatter(6);
+    final mobileNumberFormat = FilteringTextInputFormatter.allow(RegExp('[0-9]'));
+
 
 final LengthLimitingTextInputFormatter otpFormatter =
     LengthLimitingTextInputFormatter(6);

@@ -164,8 +164,8 @@ class _firstState extends State<first> {
                             height: 10,
                           ),
                           const Text(
-                            '\$${120}',
-                            style: TextStyle(fontSize: 19, color: Colors.red),
+                            '\$120',
+                            style: TextStyle(fontSize: 19, color: goldColor,fontFamily: 'mp'),
                           )
                         ],
                       )
@@ -181,7 +181,7 @@ class _firstState extends State<first> {
                   Row(
                     children: [
                     const  SizedBox(width: 25,),
-                      SvgPicture.asset('assets/svg/door.svg'),
+                      SvgPicture.asset('assets/svg/cupon.svg'),
                    const   SizedBox(width: 15,),
                    const   Text("Add promo code",style: TextStyle(fontFamily: 'mp'),)
                     ],
@@ -196,7 +196,7 @@ class _firstState extends State<first> {
                   Row(
                     children: [
                     const  SizedBox(width: 25,),
-                      SvgPicture.asset('assets/svg/cupon.svg'),
+                      SvgPicture.asset('assets/svg/door.svg'),
                     const  SizedBox(width: 15,),
                     const  Text("Delivery",style: TextStyle(fontFamily: 'mp'),),
 
@@ -231,7 +231,7 @@ class _firstState extends State<first> {
                               fontSize: 17,
                               fontFamily: 'mp',
                               fontWeight: FontWeight.w500,
-                              color: Colors.red),
+                              color: goldColor),
                         ),
                       ],
                     ),
@@ -250,13 +250,31 @@ class _firstState extends State<first> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Checkout(),
+                        builder: (context) => const Checkout(),
                       ));
                 },
-                child:const Text(
-                  'CHECKOUT',
-                  style: TextStyle(color: Colors.white, fontFamily: 'mp'),
+                child:Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                
+                height: myheight * 0.06,
+                width: mywidth * 0.06,
+                child: SvgPicture.asset(
+                  'assets/svg/s-bag_white.svg',
                 ),
+              ),
+              SizedBox(
+                width:mywidth * 0.05,
+              ),
+            const  Text(
+                'CHECKOUT',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: whiteColor,fontFamily: 'mp',fontSize: 17),
+              ),
+            ],
+          )
               ))),
     );
   }

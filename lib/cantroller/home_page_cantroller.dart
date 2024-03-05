@@ -41,7 +41,7 @@ class mygrid extends StatelessWidget {
             children: [
               Image.asset(
                 image,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 height: height,
                 width: width,
               ),

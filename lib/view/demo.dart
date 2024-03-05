@@ -5,32 +5,23 @@ import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/contact_details.dart';
 import 'package:open_fashion__1/widgets/grid_card.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ShoppingPage(),
-    );
-  }
-}
 
 class ShoppingPage extends StatefulWidget {
+  const ShoppingPage({super.key});
+
+
   @override
   _ShoppingPageState createState() => _ShoppingPageState();
 }
 
 class _ShoppingPageState extends State<ShoppingPage> {
-  final int _currentPageIndex = 0;
+  // final int _currentPageIndex = 0;
 
   // List of items for the current page
   final List<String> _currentItems = List.generate(10, (index) => 'Item ${index + 1}');
 
   // List of items for the next page
-  final List<String> _nextItems = List.generate(10, (index) => 'Next Item ${index + 1}');
+  // final List<String> _nextItems = List.generate(10, (index) => 'Next Item ${index + 1}');
   int _currentPage = 0;
 
   Widget _buildDot(int index) {
