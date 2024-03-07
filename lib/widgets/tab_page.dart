@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:open_fashion__1/cantroller/home_page_cantroller.dart';
+import 'package:open_fashion__1/model/category_model.dart';
 
 class TabPage extends StatelessWidget {
-  const TabPage({super.key});
-
+   const TabPage({super.key ,required this.list});
+final List<ProductDetail> list; 
   @override
   Widget build(BuildContext context) {
       double myheight = MediaQuery.of(context).size.height;
@@ -23,7 +24,7 @@ class TabPage extends StatelessWidget {
                       mygrid(
                           height: myheight / 4,
                           width: mywidth / 2.4,
-                          image: "assets/images/a.jpg",
+                          image: list[0].displayImage,
                           isCenter: false),
                       SizedBox(
                         height: myheight * 0.02,
@@ -31,7 +32,7 @@ class TabPage extends StatelessWidget {
                       mygrid(
                           height: myheight / 4,
                           width: mywidth / 2.4,
-                          image: "assets/images/c.jpg",
+                          image: list[3].displayImage,
                           isCenter: false),
                     ],
                   ),
@@ -44,7 +45,7 @@ class TabPage extends StatelessWidget {
                     mygrid(
                         height: myheight / 4,
                         width: mywidth / 2.4,
-                        image: "assets/images/b.jpg",
+                        image: list[2].displayImage,
                         isCenter: false),
                     SizedBox(
                       height: myheight * 0.02,
@@ -52,7 +53,7 @@ class TabPage extends StatelessWidget {
                     mygrid(
                         height: myheight / 4,
                         width: mywidth / 2.4,
-                        image: "assets/images/d.jpg",
+                        image: list[1].displayImage,
                         isCenter: false),
                   ],
                 ),

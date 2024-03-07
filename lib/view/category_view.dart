@@ -70,7 +70,7 @@ class _CategoriescreenState extends State<Categoriescreen> {
     );
   }
 
-  final ProductController productController = ProductController();
+  // final ProductController productController = ProductController();
   Widget _buildGridItem(int index ,double height , double weight) {
     return   Container(
       height: height,

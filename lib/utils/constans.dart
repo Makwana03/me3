@@ -7,6 +7,7 @@ double getScreenHeight(BuildContext context) {
 }
 
 double getScreenWidth(BuildContext context) {
+  // print(MediaQuery.of(context).size.width);
   return MediaQuery.of(context).size.width;
 }
 

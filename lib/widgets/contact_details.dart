@@ -1,9 +1,23 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:open_fashion__1/view/tabs.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class ContactDetails extends StatelessWidget {
   const ContactDetails({super.key});
+_launchURL() async {
+   const  uri = 
+              'https://sites.google.com/view/www-formwalagujarat-com/home';
+              final Uri url = Uri.parse(uri);
+  if (await canLaunchUrl(url)) {
+    throw Exception('Could not launch ');
+  }
+  else{
 
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -13,7 +27,12 @@ class ContactDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           // crossAxisAlignment: CrossAxisAlignment.values,
           children: [
-            SvgPicture.asset("assets/svg/twiter.svg"),
+            InkWell(
+              onTap: (){
+                 
+          _launchURL();
+              },
+              child: SvgPicture.asset("assets/svg/twiter.svg")),
             SvgPicture.asset("assets/svg/instagram2.svg"),
             SvgPicture.asset("assets/svg/yt.svg"),
           ],
@@ -27,22 +46,22 @@ class ContactDetails extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        const Text(
-          "support@mp.gmail.com",
+         Text(
+          homePageCantroller.storeModel.value?.store.email ??'',
           style: TextStyle(fontFamily: 'mp'),
         ),
         const SizedBox(
           height: 10,
         ),
-        const Text(
-          "+60 825 876",
+         Text(
+          homePageCantroller.storeModel.value?.store.phone ?? '',
           style: TextStyle(fontFamily: 'mp'),
         ),
         const SizedBox(
           height: 10,
         ),
-        const Text(
-          "08:00 - 20:00 - Everyday",
+         Text(
+        homePageCantroller.storeModel.value?.store.time  ?? ''  ,
           style: TextStyle(fontFamily: 'mp'),
         ),
         const SizedBox(
