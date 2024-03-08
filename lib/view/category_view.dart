@@ -172,7 +172,7 @@ class _CategoriescreenState extends State<Categoriescreen> {
                             const SizedBox(
                               height: 70,
                             ),
-                            const ContactDetails()
+                            // const ContactDetails()
                           ],
                         ),
                       ),

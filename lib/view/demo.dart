@@ -32,7 +32,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         border: Border.all(color: whiteColor),
-        color: _currentPage == index ? blackColor.withOpacity(0.8) : greyColor,
+        color: _currentPage == index ? blackColor.withOpacity(0.8) : greyColor.withOpacity(0.2),
       ),
       child: Text(
         '${index + 1}',

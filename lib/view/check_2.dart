@@ -88,7 +88,7 @@ class _CheckoutState extends State<Checkout> {
                             ));
                           },
                           child: Container(
-                            height: height * 0.05,
+                            height: 45,
                             //width: width * 0.9,
                             decoration: BoxDecoration(
                                 borderRadius:
@@ -176,7 +176,7 @@ class _CheckoutState extends State<Checkout> {
                   Spacer(),
                   Text(
                     '\$240',
-                    style: TextStyle(color: redColor, fontFamily: 'mp'),
+                    style: TextStyle(color: goldColor, fontFamily: 'mp'),
                   )
                 ],
               ),

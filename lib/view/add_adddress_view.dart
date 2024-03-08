@@ -157,7 +157,7 @@ class _AddAdressState extends State<AddAdress> {
                   ),
                   CommonTextFormField(
                     controller: _mobileController,
-                    label: 'Mobile Number',
+                    label: 'Phone Number',
                     errorMessage: 'Please enter valid Number',
                     inputType: TextInputType.number,
                     formatter: [mobileLengthFormatter, mobileNumberFormat],
