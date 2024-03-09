@@ -76,7 +76,7 @@ class CommonTextFormField extends StatelessWidget {
       borderSide: BorderSide(color: goldColor, width: 0.0));
 
   final InputBorder errorBorder = const UnderlineInputBorder(
-      borderSide: BorderSide(color: greyColor, width: 0.0));
+      borderSide: BorderSide(color: redColor, width: 0.0));
 
   @override
   Widget build(BuildContext context) {
@@ -90,25 +90,23 @@ class CommonTextFormField extends StatelessWidget {
       inputFormatters: formatter,
       textInputAction: TextInputAction.next,
       controller: controller,
+      cursorColor: goldColor,
       decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           counterText: '',
+          errorStyle: TextStyle(fontFamily: 'mp'),
           isDense: false,
-          hintText: "Prasjant",
+          hintText: label,
           hintStyle: hintStyle,
-          label: Text(
-            label,
-            style: labelStyle,
-          ),
           errorBorder: errorBorder,
           focusedBorder: focusBorder,
           border: border,
           disabledBorder: border,
           focusedErrorBorder: errorBorder,
           enabledBorder: border,
-          prefix: isMobileNumber
-              ? Text('+91', style: mobileNumberStyle)
-              : const SizedBox.shrink(),
+          // prefix: isMobileNumber
+          //     ? Text('+91', style: mobileNumberStyle)
+          //     : const SizedBox.shrink(),
           suffix: isDropDown
               ? Image.asset(
                   suffixIcon,

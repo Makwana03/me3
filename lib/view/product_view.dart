@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/view/checkout_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 
 class ProductDetailView extends StatefulWidget {
-  ProductDetailView({super.key});
+  const ProductDetailView({Key? key}) : super(key: key);
 
   @override
   State<ProductDetailView> createState() => _ProductDetailViewState();
@@ -22,39 +22,34 @@ class _ProductDetailViewState extends State<ProductDetailView> {
   int selectedIndex = 0;
 
   List<int> ringSizes = [6, 8, 9, 10, 11];
-  int selectedsizeIndex = 0;
+  int selectedSizeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    double currentHieght = getScreenHeight(context);
-    double currentWidth = getScreenWidth(context);
+    double currentHeight = getScreenHeight(context);
+    // double currentHeight = getScreenHeight(context);
     return Scaffold(
-      appBar:const PreferredSize(
-          preferredSize: Size.fromHeight(60), child: CommonAppBarScreen()),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(currentHeight * 0.076530612),
+        child: const CommonAppBarScreen(),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                // padding: const EdgeInsets.symmetric(vertical: 10),
-                height: 350,
-                // height: Get.height * 0.30,
+              SizedBox(
+                height: currentHeight * 0.446428571,
                 width: double.infinity,
                 child: Image.asset(
                   ringImages[selectedIndex],
-                  width: double.infinity,
-                  height: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
+              SizedBox(height: currentHeight * 0.025510204),
               SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 70,
-                // height: Get.height * 0.050,
+                height: currentHeight * 0.089285714,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: ringImages.length,
@@ -65,85 +60,77 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           selectedIndex = index;
                         });
                       },
-                      child: Container(
-                        // padding: const EdgeInsets.all(8.0),
-                        height: 100,
-                        width: 100,
-                        // height: Get.height * 0.1,
-                        // width: Get.width * 0.1,
-
-                        decoration: selectedIndex == index
-                            ? BoxDecoration(
-                                border: BorderDirectional(
-                                    bottom: BorderSide(color: goldColor)))
-                            : const BoxDecoration(),
-                        child: Image.asset(
-                          ringImages[index],
-                          // fit: BoxFit.contain,
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Container(
+                          width: currentHeight * 0.12755102,
+                          decoration: BoxDecoration(
+                            border: BorderDirectional(
+                              bottom: BorderSide(
+                                color: selectedIndex == index
+                                    ? goldColor
+                                    : Colors.transparent,
+                              ),
+                            ),
+                          ),
+                          child: Image.asset(
+                            ringImages[index],
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                // height: 100,
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "M O H A N",
-                          style: TextStyle(fontFamily: "mp", fontSize: 28),
+              SizedBox(height: currentHeight * 0.025510204),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "MOHAN",
+                        style: TextStyle(
+                          fontFamily: "mp",
+                          fontSize: 28,
+                          letterSpacing: 3,
                         ),
-                        SvgPicture.asset(
-                          "assets/svg/upload.svg",
-                          height: 30,
-                        ),
-                      ],
+                      ),
+                      SvgPicture.asset(
+                        "assets/svg/upload.svg",
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Recycle Boucle Knit Cardigan Pink",
+                    style: TextStyle(fontFamily: "mp", fontSize: 18),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "\$120",
+                    style: TextStyle(
+                      fontFamily: "mp",
+                      fontSize: 22,
+                      color: goldColor,
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Recycle Boucle Knit Cardigan Pink",
-                      style: TextStyle(fontFamily: "mp", fontSize: 18),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "\$120",
-                      style: TextStyle(
-                          fontFamily: "mp", fontSize: 22, color: goldColor),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 100,
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    Text(
-                      "Ring Size",
-                      style: TextStyle(fontFamily: "mp", fontSize: 20),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    SizedBox(
-                      height: 40,
-                      // width: double.infinity,
+              SizedBox(height: currentHeight * 0.01510204),
+              Row(
+                children: [
+                  const Text(
+                    "Size",
+                    style: TextStyle(fontFamily: "mp", fontSize: 18),
+                  ),
+                  SizedBox(width: currentHeight * 0.01),
+                  Expanded(
+                    child: SizedBox(
+                      height: currentHeight * 0.0428,
                       child: ListView.builder(
                         itemCount: ringSizes.length,
                         scrollDirection: Axis.horizontal,
@@ -153,62 +140,75 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             child: InkWell(
                               onTap: () {
                                 setState(() {
-                                  selectedsizeIndex = index;
+                                  selectedSizeIndex = index;
                                 });
                               },
                               child: Container(
-                                height: 40,
-                                width: 40,
+                                height: currentHeight * 0.051020408,
+                                width: currentHeight * 0.051020408,
                                 alignment: Alignment.center,
-                                decoration: selectedsizeIndex == index
-                                    ? BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Color(0xff333333),
-                                        border: Border.all(color: greyColor))
-                                    : BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(color: greyColor)),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: selectedSizeIndex == index
+                                      ? const Color(0xff333333)
+                                      : Colors.transparent,
+                                  border: Border.all(
+                                    color: greyColor,
+                                  ),
+                                ),
                                 child: Text(
                                   "${ringSizes[index]}",
-                                  style: selectedsizeIndex == index
-                                      ? TextStyle(
-                                          color: whiteColor, fontFamily: "mp")
-                                      : TextStyle(fontFamily: "mp"),
+                                  style: TextStyle(
+                                    color: selectedSizeIndex == index
+                                        ? whiteColor
+                                        : Colors.black,
+                                    fontFamily: "mp",
+                                  ),
                                 ),
                               ),
                             ),
                           );
                         },
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: currentHeight * 0.051020408,
               )
             ],
           ),
         ),
       ),
       bottomNavigationBar: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => first(),
+              ));
+        },
         child: Container(
-          height: 60,
+          height: currentHeight * 0.076530612,
           width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          decoration: BoxDecoration(color: blackColor),
-          child: Row(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          decoration: const BoxDecoration(color: blackColor),
+          child: const Row(
             children: [
               Icon(
                 Icons.add,
                 color: whiteColor,
                 size: 28,
               ),
-              SizedBox(
-                width: 15,
-              ),
+              SizedBox(width: 15),
               Text(
                 "ADD TO BASKET",
                 style: TextStyle(
-                    fontFamily: "mp", color: whiteColor, fontSize: 20),
+                  fontFamily: "mp",
+                  color: whiteColor,
+                  fontSize: 20,
+                ),
               ),
               Spacer(),
               Icon(

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
-import 'package:open_fashion__1/view/category_view.dart';
 import 'package:open_fashion__1/view/homepage_view.dart';
-import 'package:open_fashion__1/view/product_view.dart';
 
-import 'package:open_fashion__1/view/tab_view.dart';
+
+
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/common_textfiled.dart';
 import 'package:open_fashion__1/widgets/grid_card.dart';
@@ -20,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             GridItem(height: 300,width: 250,image:  'assets/images/banner.png',isCenter: false,productname: "",subname: "",price: "",),
+             const GridItem(height: 300,width: 250,image:  'assets/images/banner.png',isCenter: false,productname: "",subname: "",price: "",),
             SizedBox(
               width: 200,
               child: CommonTextFormField(
