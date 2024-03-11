@@ -23,17 +23,21 @@ final List<ProductDetail> list;
                     children: [
                       mygrid(
                           height: myheight / 4,
+                          model: list[0],
+                         
+                          
+                          
                           width: mywidth / 2.4,
-                          image: list[0].displayImage,
-                          isCenter: false),
+                          
+                          isCenter: true),
                       SizedBox(
                         height: myheight * 0.02,
                       ),
                       mygrid(
                           height: myheight / 4,
                           width: mywidth / 2.4,
-                          image: list[3].displayImage,
-                          isCenter: false),
+                          model: list[3],
+                          isCenter: true),
                     ],
                   ),
                 ),
@@ -43,18 +47,20 @@ final List<ProductDetail> list;
                 Column(
                   children: [
                     mygrid(
+                     model: list[2],
                         height: myheight / 4,
                         width: mywidth / 2.4,
-                        image: list[2].displayImage,
-                        isCenter: false),
+                        
+                        isCenter: true),
                     SizedBox(
                       height: myheight * 0.02,
                     ),
                     mygrid(
                         height: myheight / 4,
+                        model: list[1],
                         width: mywidth / 2.4,
-                        image: list[1].displayImage,
-                        isCenter: false),
+                      
+                        isCenter: true),
                   ],
                 ),
               ],

@@ -1,86 +1,92 @@
 import 'package:flutter/material.dart';
+import 'package:open_fashion__1/model/category_model.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/view/product_view.dart';
 
 class GridItem extends StatelessWidget {
-  const GridItem(
-      {super.key,
-      required this.height,
-      required this.width,
-      required this.image,
-      required this.isCenter,
-      required this.productname,
-      required this.subname,
-      required this.price});
+  const GridItem({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.isCenter,
+    required this.model,
+  });
+  final ProductDetail model;
   final double height;
-  final String image;
   final double width;
   final bool isCenter;
-  final String productname;
-  final String subname;
-  final String price;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:const EdgeInsets.all(0),
-      child: Column(
-        crossAxisAlignment:
-            isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                image,
-                fit: BoxFit.cover,
-                height: height,
-                // height: double.maxFinite -50,
-                width: double.maxFinite,
-                // height: 200,
-              ),
-              Positioned(
-                bottom: -10,
-                right: -10,
-                child: IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  color: goldColor,
-                  onPressed: () {},
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ProductDetailView(model: model),
+        ));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(0),
+        child: Column(
+          crossAxisAlignment:
+              isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          children: [
+            Stack(
+              children: [
+                Image.network(
+                  model.displayImage,
+                  fit: BoxFit.cover,
+                  height: height,
+                  // height: double.maxFinite -50,
+                  width: double.maxFinite,
+                  // height: 200,
                 ),
+                Positioned(
+                  bottom: -10,
+                  right: -10,
+                  child: IconButton(
+                    icon: const Icon(Icons.favorite_border),
+                    color: goldColor,
+                    onPressed: () {},
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              model.productName,
+              //textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'mp',
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis,
+                fontSize: 18,
               ),
-            ],
-          ),
-          const SizedBox(height: 5,),
-          Text(
-            productname,
-            //textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontFamily: 'mp',
-              fontWeight: FontWeight.bold,
-              overflow: TextOverflow.ellipsis,
-              fontSize: 18,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 5,
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 5,
+              ),
+              child: Text(
+                model.productDetail,
+                style: const TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    fontFamily: 'mp',
+                    fontSize: 12),
+              ),
             ),
-            child: Text(
-              subname,
-              style:const TextStyle(
+            Text(
+              '\$${model.productPrice}',
+              style: const TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontFamily: 'mp',
-                  fontSize:12),
-            ),
-          ),
-          Text(
-            price,
-            style:const TextStyle(
-                overflow: TextOverflow.ellipsis,
-                fontFamily: 'mp',
-                color: goldColor,
-                fontSize: 13.5),
-          )
-        ],
+                  color: goldColor,
+                  fontSize: 13.5),
+            )
+          ],
+        ),
       ),
     );
   }

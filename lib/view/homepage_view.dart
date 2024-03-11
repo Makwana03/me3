@@ -1,7 +1,6 @@
 // // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -141,7 +140,7 @@ class _FirstScreenState extends State<FirstScreen> {
                         final page =
                             homePageCantroller.bannerModel.value?.data[index];
                         return homePageCantroller.isLoading.value
-                            ? Center(
+                            ? const Center(
                                 child: CircularProgressIndicator(),
                               )
                             : _buildPage(page!);
@@ -197,27 +196,28 @@ class _FirstScreenState extends State<FirstScreen> {
               SizedBox(
                 height: myheight * 0.00,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Explore More",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: blackColor,
-                        fontSize: myheight * 0.02,
-                        fontFamily: "mp"),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
+              InkWell(
+                onTap: (){
+                  Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ShoppingPage(),
+                              builder: (context) => ShoppingPage(dataModel: homePageCantroller.categorysModel.value!.cat[homePageCantroller.currentTabIndex.value].productDetail,),
                             ));
-                      },
-                      icon: const Icon(Icons.arrow_forward))
-                ],
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Explore More",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: blackColor,
+                          fontSize: myheight * 0.02,
+                          fontFamily: "mp"),
+                    ),
+                     const Icon(Icons.arrow_forward)
+                  ],
+                ),
               ),
               SizedBox(
                 height: myheight * 0.00,

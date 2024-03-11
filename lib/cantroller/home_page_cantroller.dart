@@ -4,17 +4,19 @@ import 'package:get/get.dart';
 import 'package:open_fashion__1/allUrl/all_url.dart';
 import 'package:open_fashion__1/all_method/http_methodes.dart';
 import 'package:open_fashion__1/model/banner_model.dart';
-import 'package:open_fashion__1/model/category_model.dart';
 import 'package:open_fashion__1/model/store_information.dart';
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/view/product_view.dart';
+import 'package:open_fashion__1/model/category_model.dart' as s;
+
 
 class HomePageCantroller extends GetxController {
   var isLoading = false.obs;
   var isLoadingCat = false.obs;
   var isLoadingStore = false.obs;
+  RxInt currentTabIndex = 0.obs;
   Rx<BannerModel?> bannerModel = Rx<BannerModel?>(null);
-  Rx<Categorys?> categorysModel = Rx<Categorys?>(null);
+  Rx<s.Categorys?> categorysModel = Rx<s.Categorys?>(null);
   Rx<StoreModel?> storeModel = Rx<StoreModel?>(null);
 
 
@@ -49,11 +51,6 @@ void changeLoadingStore(bool loadingStatus) {
       if (response.statusCode == 200) {
         changeLoadingStore(false);
         storeModel.value = storeModelFromJson(response.body);
-                      
-
-
-
-
       }
       else{
         print(response.body);
@@ -74,7 +71,7 @@ void changeLoadingStore(bool loadingStatus) {
       var response = await getMethode("$baseUrl$category", context, headers);
       if (response.statusCode == 200) {
         changeLoadingCat(false);
-        categorysModel.value = categorysFromJson(response.body);
+        categorysModel.value = s.categorysFromJson(response.body);
                       
 
         print(categorysModel.value!.cat[0].categoryName);
@@ -127,10 +124,14 @@ class mygrid extends StatelessWidget {
       {super.key,
       required this.height,
       required this.width,
-      required this.image,
-      required this.isCenter});
+    
+      required this.isCenter,
+     required this.model,
+      });
+      
+     final s.ProductDetail model;
   final double height;
-  final String image;
+  
   final double width;
   final bool isCenter;
 
@@ -142,17 +143,17 @@ class mygrid extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const ProductDetailView(),
+              builder: (context) =>  ProductDetailView(model: model,),
             ));
       },
       child: Column(
         crossAxisAlignment:
-            isCenter ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+             CrossAxisAlignment.center,
         children: [
           Stack(
             children: [
               Image.network(
-                image,
+               model.displayImage,
                 fit: BoxFit.fill,
                 height: height,
                 width: width,
@@ -160,15 +161,21 @@ class mygrid extends StatelessWidget {
             ],
           ),
           Text(
-            '21WN reversible angora',
+            model.productName,
             style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
           ),
-          Text(
-            'Cardigan',
-            style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
+          Container(
+            width: width -20,
+            // alignment: ,
+            child: Center(
+              child: Text(
+                model.productDetail,
+                style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77,overflow: TextOverflow.ellipsis),
+              ),
+            ),
           ),
           Text(
-            "\$120",
+            "\$${model.productPrice}",
             style: TextStyle(
                 fontFamily: 'mp', color: goldColor, fontSize: myheight / 70),
           )
