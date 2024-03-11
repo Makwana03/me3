@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_fashion__1/cantroller/category_cantroller.dart';
+import 'package:open_fashion__1/model/category_model.dart';
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/contact_details.dart';
@@ -7,7 +8,8 @@ import 'package:open_fashion__1/widgets/grid_card.dart';
 
 
 class ShoppingPage extends StatefulWidget {
-  const ShoppingPage({super.key});
+  const ShoppingPage({super.key ,required this.dataModel});
+  final List<ProductDetail> dataModel;
 
 
   @override
@@ -15,16 +17,19 @@ class ShoppingPage extends StatefulWidget {
 }
 
 class _ShoppingPageState extends State<ShoppingPage> {
-  // final int _currentPageIndex = 0;
+  @override
+  void dispose() {
+    print('dispose call');
+    super.dispose();
+  }
+  
+  final List<String> _currentItems = List.generate(4, (index) => 'Item ${index + 1}');
 
-  // List of items for the current page
-  final List<String> _currentItems = List.generate(10, (index) => 'Item ${index + 1}');
-
-  // List of items for the next page
-  // final List<String> _nextItems = List.generate(10, (index) => 'Next Item ${index + 1}');
+ 
   int _currentPage = 0;
 
   Widget _buildDot(int index) {
+    print(widget.dataModel.length);
     return Container(
       width: 30,
       height: 30,
@@ -47,18 +52,16 @@ class _ShoppingPageState extends State<ShoppingPage> {
     );
   }
 
-  Widget _buildGridItem(int index, double height, double width) {
+  Widget _buildGridItem(int index, double height, double width , ProductDetail productDetail) {
     return  Container(
       height: height,
       width: width,
       child: GridItem(
         height: height,
         width: width,
-        image: categorylst[index].images,
+      model:productDetail,
         isCenter: true,
-        productname: categorylst[index].name,
-        subname: categorylst[index].subname,
-        price: categorylst[index].price,
+        
       ),
     );
   }
@@ -100,10 +103,10 @@ class _ShoppingPageState extends State<ShoppingPage> {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              children: _currentItems.map((item) {
+              children: widget.dataModel.map((item) {
                 return Container(height: 280,
                   child: _buildGridItem(0, MediaQuery.of(context).size.width * 0.55,
-                      MediaQuery.of(context).size.width * 0.178571429),
+                      MediaQuery.of(context).size.width * 0.178571429 ,item),
                 );
               }).toList(),
             ),

@@ -16,21 +16,25 @@ class CustomTabView extends StatefulWidget {
 
 class CustomTabViewState extends State<CustomTabView>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController; 
-  List<Tab> myTabs = <Tab>[
-    const Tab(text: 'All'),
-    const Tab(text: 'Apparel'),
-    const Tab(text: 'Dress'),
-    const Tab(text: 'Tshirt'),
-    const Tab(text: 'Bag'),
-  ];
+  late TabController _tabController;
+
 
   @override
   void initState() {
-    
-    
-    _tabController = TabController(length: homePageCantroller.categorysModel.value!.cat.length, vsync: this);
+    _tabController = TabController(
+        length: homePageCantroller.categorysModel.value!.cat.length,
+        vsync: this);
+    _tabController.addListener(_handleTabSelection);
+
     super.initState();
+  }
+
+  void _handleTabSelection() {
+    
+    if (_tabController.index != _tabController.previousIndex) {
+      print("Current Tab Index: ${_tabController.index}");
+      homePageCantroller.currentTabIndex.value = _tabController.index;
+    }
   }
 
   @override
@@ -50,21 +54,11 @@ class CustomTabViewState extends State<CustomTabView>
           controller: _tabController,
           labelPadding: const EdgeInsets.symmetric(horizontal: 5.0),
 
-          tabs:homePageCantroller.categorysModel.value!.cat.map((category) => Tab(text: category.categoryName)).toList(),
-          //  myTabs.map((Tab tab) {
-          //   return Tab(
-          //     child: Text(
-          //       tab.text!,
-          //       style: const TextStyle(
-          //         fontSize: 14,
-          //         fontFamily: 'mp',
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //   );
-          // }
-          // ).toList(),
-          labelColor: blackColor, // Color of the selected tab title
+          tabs: homePageCantroller.categorysModel.value!.cat
+              .map((category) => Tab(text: category.categoryName))
+              .toList(),
+         
+          labelColor: blackColor, 
           unselectedLabelColor: Colors.grey,
           indicator: const CustomTabIndicator(
             color: goldColor,
@@ -72,67 +66,68 @@ class CustomTabViewState extends State<CustomTabView>
           ),
         ),
       ),
-      body: TabBarView(controller: _tabController, children: 
-        homePageCantroller.categorysModel.value!.cat.map((e) {
-          return TabPage(list:  e.productDetail);
-        }).toList()
-      //   SizedBox(
-      //     child: SingleChildScrollView(
-      //       child: Row(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           SizedBox(
-      //             height: myheight * 0.05,
-      //           ),
-      //           Padding(
-      //             padding: const EdgeInsets.only(right: 20),
-      //             child: Column(
-      //               children: [
-      //                 mygrid(
-      //                     height: myheight / 4,
-      //                     width: mywidth / 2.4,
-      //                     image: "assets/images/a.jpg",
-      //                     isCenter: false),
-      //                 SizedBox(
-      //                   height: myheight * 0.02,
-      //                 ),
-      //                 mygrid(
-      //                     height: myheight / 4,
-      //                     width: mywidth / 2.4,
-      //                     image: "assets/images/c.jpg",
-      //                     isCenter: false),
-      //               ],
-      //             ),
-      //           ),
-      //           SizedBox(
-      //             height: myheight * 0.05,
-      //           ),
-      //           Column(
-      //             children: [
-      //               mygrid(
-      //                   height: myheight / 4,
-      //                   width: mywidth / 2.4,
-      //                   image: "assets/images/b.jpg",
-      //                   isCenter: false),
-      //               SizedBox(
-      //                 height: myheight * 0.02,
-      //               ),
-      //               mygrid(
-      //                   height: myheight / 4,
-      //                   width: mywidth / 2.4,
-      //                   image: "assets/images/d.jpg",
-      //                   isCenter: false),
-      //             ],
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      //   // const TabPage(),
-      //   // const TabPage(),
-      //   // const TabPage(),
-      //   // const TabPage(),
-      ),
+      body: TabBarView(
+          controller: _tabController,
+          children: homePageCantroller.categorysModel.value!.cat.map((e) {
+            return TabPage(list: e.productDetail);
+          }).toList()
+          //   SizedBox(
+          //     child: SingleChildScrollView(
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           SizedBox(
+          //             height: myheight * 0.05,
+          //           ),
+          //           Padding(
+          //             padding: const EdgeInsets.only(right: 20),
+          //             child: Column(
+          //               children: [
+          //                 mygrid(
+          //                     height: myheight / 4,
+          //                     width: mywidth / 2.4,
+          //                     image: "assets/images/a.jpg",
+          //                     isCenter: false),
+          //                 SizedBox(
+          //                   height: myheight * 0.02,
+          //                 ),
+          //                 mygrid(
+          //                     height: myheight / 4,
+          //                     width: mywidth / 2.4,
+          //                     image: "assets/images/c.jpg",
+          //                     isCenter: false),
+          //               ],
+          //             ),
+          //           ),
+          //           SizedBox(
+          //             height: myheight * 0.05,
+          //           ),
+          //           Column(
+          //             children: [
+          //               mygrid(
+          //                   height: myheight / 4,
+          //                   width: mywidth / 2.4,
+          //                   image: "assets/images/b.jpg",
+          //                   isCenter: false),
+          //               SizedBox(
+          //                 height: myheight * 0.02,
+          //               ),
+          //               mygrid(
+          //                   height: myheight / 4,
+          //                   width: mywidth / 2.4,
+          //                   image: "assets/images/d.jpg",
+          //                   isCenter: false),
+          //             ],
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          //   // const TabPage(),
+          //   // const TabPage(),
+          //   // const TabPage(),
+          //   // const TabPage(),
+          ),
     );
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:open_fashion__1/model/category_model.dart';
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/view/checkout_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 
 class ProductDetailView extends StatefulWidget {
-  const ProductDetailView({Key? key}) : super(key: key);
+  const ProductDetailView({Key? key, required this.model}) : super(key: key);
+  // final List<ProductImage> images;
+  final ProductDetail model;
 
   @override
   State<ProductDetailView> createState() => _ProductDetailViewState();
@@ -42,8 +45,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
               SizedBox(
                 height: currentHeight * 0.446428571,
                 width: double.infinity,
-                child: Image.asset(
-                  ringImages[selectedIndex],
+                child: Image.network(
+                  widget.model.productImages[selectedIndex].productImage,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -52,7 +55,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                 height: currentHeight * 0.089285714,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: ringImages.length,
+                  itemCount: widget.model.productImages.length,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
@@ -73,8 +76,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                               ),
                             ),
                           ),
-                          child: Image.asset(
-                            ringImages[index],
+                          child: Image.network(
+                            widget.model.productImages[index].productImage,
                             fit: BoxFit.contain,
                           ),
                         ),
