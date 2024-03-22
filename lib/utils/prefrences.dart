@@ -1,5 +1,5 @@
 class Preferences {
-  static const userLogin = "userLogin";
+  static const userAdd = "userAdd";
   static const userID = "userID";
   static const id = "id";
   static const userFullDetails = "userFullDetails";

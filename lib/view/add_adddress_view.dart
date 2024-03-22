@@ -2,10 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:open_fashion__1/cantroller/add_address_cantroller.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/common_textfiled.dart';
+
+AddAdressCantroller addAdressCantroller = AddAdressCantroller();
 
 class AddAdress extends StatefulWidget {
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
@@ -28,6 +31,11 @@ class _AddAdressState extends State<AddAdress> {
 
   final TextEditingController _mobileController = TextEditingController();
 
+// @override
+//   void initState()async {
+//     // SHaredP
+//     super.initState();
+//   }
   @override
   Widget build(BuildContext context) {
     double height = getScreenHeight(context);
@@ -179,7 +187,15 @@ class _AddAdressState extends State<AddAdress> {
               shape: const BeveledRectangleBorder()),
           onPressed: () {
             if (AddAdress._key.currentState!.validate()) {
-              print('Prashant');
+              addAdressCantroller.addadressData(
+                  context,
+                  _firstNameController.text,
+                  _lastNameController.text,
+                  _cityCantroller.text,
+                  _stateControlle.text,
+                  _mobileController.text,
+                  _addressCantoler.text,
+                  _zipeCodeControlle.text);
             }
           },
           child: const Text(

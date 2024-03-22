@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_fashion__1/utils/constans.dart';
 
 // ignore: must_be_immutable
 class LoadingProgressDialog extends StatelessWidget {
@@ -11,7 +12,7 @@ class LoadingProgressDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     this.context = context;
     return const Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(color: goldColor,),
     );
   }
 

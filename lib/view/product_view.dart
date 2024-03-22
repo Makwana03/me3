@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:open_fashion__1/cantroller/manage_fav_list.dart';
 import 'package:open_fashion__1/model/category_model.dart';
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/view/checkout_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
-
+CartManager cartManager = CartManager();
 class ProductDetailView extends StatefulWidget {
   const ProductDetailView({Key? key, required this.model}) : super(key: key);
   // final List<ProductImage> images;
@@ -93,8 +94,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "MOHAN",
+                       Text(
+                      widget.model.productDetail  ,
                         style: TextStyle(
                           fontFamily: "mp",
                           fontSize: 28,
@@ -108,14 +109,14 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "Recycle Boucle Knit Cardigan Pink",
+                   Text(
+                  widget.model.productName  ,
                     style: TextStyle(fontFamily: "mp", fontSize: 18),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "\$120",
-                    style: TextStyle(
+                   Text(
+                    "\$${widget.model.productPrice}",
+                    style:const  TextStyle(
                       fontFamily: "mp",
                       fontSize: 22,
                       color: goldColor,
@@ -186,11 +187,13 @@ class _ProductDetailViewState extends State<ProductDetailView> {
       ),
       bottomNavigationBar: InkWell(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => first(),
-              ));
+          cartManager.saveItemsToPrefs(widget.model);
+          print(" Value Add sucessfuly");
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => first(model: widget.model,),
+          //     ));
         },
         child: Container(
           height: currentHeight * 0.076530612,

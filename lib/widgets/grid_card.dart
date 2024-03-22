@@ -8,13 +8,11 @@ class GridItem extends StatelessWidget {
   const GridItem({
     super.key,
     required this.height,
-    required this.width,
     required this.isCenter,
     required this.model,
   });
   final ProductDetail model;
   final double height;
-  final double width;
   final bool isCenter;
 
   @override
@@ -35,7 +33,7 @@ class GridItem extends StatelessWidget {
               children: [
                 Image.network(
                   model.displayImage,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   height: height,
                   // height: double.maxFinite -50,
                   width: double.maxFinite,
@@ -60,7 +58,7 @@ class GridItem extends StatelessWidget {
               //textAlign: TextAlign.center,
               style: const TextStyle(
                 fontFamily: 'mp',
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.normal,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 18,
               ),

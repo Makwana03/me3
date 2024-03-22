@@ -1,5 +1,6 @@
 // controller.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:open_fashion__1/allUrl/all_url.dart';
 import 'package:open_fashion__1/all_method/http_methodes.dart';
@@ -71,10 +72,11 @@ void changeLoadingStore(bool loadingStatus) {
       var response = await getMethode("$baseUrl$category", context, headers);
       if (response.statusCode == 200) {
         changeLoadingCat(false);
+        print(response.body);
         categorysModel.value = s.categorysFromJson(response.body);
                       
 
-        print(categorysModel.value!.cat[0].categoryName);
+        // print(categorysModel.value!.cat[0].categoryName);
 
 
 
@@ -101,6 +103,7 @@ final Map<String, String> headers = {
       print("try");
       var response = await getMethode("$baseUrl$banner", context, headers);
       if (response.statusCode == 200) {
+        print(response.body);
          bannerModel.value = bannerModelFromJson(response.body);
               changeLoading(false);
 
@@ -160,9 +163,15 @@ class mygrid extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            model.productName,
-            style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
+          Container(
+            width: width-20,
+            child: Center(
+              child: Text(
+                model.productName,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
+              ),
+            ),
           ),
           Container(
             width: width -20,

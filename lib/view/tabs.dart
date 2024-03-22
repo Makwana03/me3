@@ -32,7 +32,8 @@ class CustomTabViewState extends State<CustomTabView>
   void _handleTabSelection() {
     
     if (_tabController.index != _tabController.previousIndex) {
-      print("Current Tab Index: ${_tabController.index}");
+      
+      ("Current Tab Index: ${_tabController.index}");
       homePageCantroller.currentTabIndex.value = _tabController.index;
     }
   }
@@ -66,68 +67,71 @@ class CustomTabViewState extends State<CustomTabView>
           ),
         ),
       ),
-      body: TabBarView(
-          controller: _tabController,
-          children: homePageCantroller.categorysModel.value!.cat.map((e) {
-            return TabPage(list: e.productDetail);
-          }).toList()
-          //   SizedBox(
-          //     child: SingleChildScrollView(
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           SizedBox(
-          //             height: myheight * 0.05,
-          //           ),
-          //           Padding(
-          //             padding: const EdgeInsets.only(right: 20),
-          //             child: Column(
-          //               children: [
-          //                 mygrid(
-          //                     height: myheight / 4,
-          //                     width: mywidth / 2.4,
-          //                     image: "assets/images/a.jpg",
-          //                     isCenter: false),
-          //                 SizedBox(
-          //                   height: myheight * 0.02,
-          //                 ),
-          //                 mygrid(
-          //                     height: myheight / 4,
-          //                     width: mywidth / 2.4,
-          //                     image: "assets/images/c.jpg",
-          //                     isCenter: false),
-          //               ],
-          //             ),
-          //           ),
-          //           SizedBox(
-          //             height: myheight * 0.05,
-          //           ),
-          //           Column(
-          //             children: [
-          //               mygrid(
-          //                   height: myheight / 4,
-          //                   width: mywidth / 2.4,
-          //                   image: "assets/images/b.jpg",
-          //                   isCenter: false),
-          //               SizedBox(
-          //                 height: myheight * 0.02,
-          //               ),
-          //               mygrid(
-          //                   height: myheight / 4,
-          //                   width: mywidth / 2.4,
-          //                   image: "assets/images/d.jpg",
-          //                   isCenter: false),
-          //             ],
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   // const TabPage(),
-          //   // const TabPage(),
-          //   // const TabPage(),
-          //   // const TabPage(),
-          ),
+      body: SizedBox(
+        height: myheight,
+        child: TabBarView(
+            controller: _tabController,
+            children: homePageCantroller.categorysModel.value!.cat.map((e) {
+              return TabPage(list: e.productDetail);
+            }).toList()
+            //   SizedBox(
+            //     child: SingleChildScrollView(
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           SizedBox(
+            //             height: myheight * 0.05,
+            //           ),
+            //           Padding(
+            //             padding: const EdgeInsets.only(right: 20),
+            //             child: Column(
+            //               children: [
+            //                 mygrid(
+            //                     height: myheight / 4,
+            //                     width: mywidth / 2.4,
+            //                     image: "assets/images/a.jpg",
+            //                     isCenter: false),
+            //                 SizedBox(
+            //                   height: myheight * 0.02,
+            //                 ),
+            //                 mygrid(
+            //                     height: myheight / 4,
+            //                     width: mywidth / 2.4,
+            //                     image: "assets/images/c.jpg",
+            //                     isCenter: false),
+            //               ],
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: myheight * 0.05,
+            //           ),
+            //           Column(
+            //             children: [
+            //               mygrid(
+            //                   height: myheight / 4,
+            //                   width: mywidth / 2.4,
+            //                   image: "assets/images/b.jpg",
+            //                   isCenter: false),
+            //               SizedBox(
+            //                 height: myheight * 0.02,
+            //               ),
+            //               mygrid(
+            //                   height: myheight / 4,
+            //                   width: mywidth / 2.4,
+            //                   image: "assets/images/d.jpg",
+            //                   isCenter: false),
+            //             ],
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            //   // const TabPage(),
+            //   // const TabPage(),
+            //   // const TabPage(),
+            //   // const TabPage(),
+            ),
+      ),
     );
   }
 }
