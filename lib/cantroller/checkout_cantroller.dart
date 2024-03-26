@@ -26,14 +26,23 @@ class CheckoutCantroller extends GetxController {
     model.value = list;
   }
 
-  Future<void> placeOrder(List<ProductDetail> product, BuildContext context) async {
+  Future<void> placeOrder(List<ProductDetail> products,int totalPrice, BuildContext context) async {
+    List<Map<String , dynamic>> allProduct =[];
     Map<String, int> product = {
       "productID": 1,
       "quantity": 2,
       "total_product_price": 120
     };
+    for (var element in products) {
+      allProduct.add({
+      "productID": element.id,
+      "quantity": 1,
+      "total_product_price": element.productPrice
+    });
+    }
+    
     Map<String, dynamic> body = {
-      "products": [product],
+      "products": allProduct,
       "shipping_method": "Pick Up At Store",
       "payment_method": "cash on delivery",
       "total_price": 240
@@ -43,6 +52,7 @@ class CheckoutCantroller extends GetxController {
       "Authorization": gUserData!.token
     };
     try {
+      print(allProduct.toString());
       var response = await postMethod('$baseUrl$order', body, hader, context);
       if (response.statusCode == 200) {
         print("Order Success full");

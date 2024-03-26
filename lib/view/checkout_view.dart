@@ -77,20 +77,20 @@ class _firstState extends State<first> {
 
     return Obx(
       () => Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(60),
+        appBar:  PreferredSize(
+          preferredSize: Size.fromHeight(myheight * 0.076530612),
           child: CommonAppBarScreen(isCart: true,),
         ),
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding:  EdgeInsets.all(myheight * 0.012755102),
             child: cartManager.items.value == null
                 ? Center(child: Text("NO Data Availbale"))
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 10,
+                       SizedBox(
+                        height: myheight * 0.012755102,
                       ),
                       Align(
                         alignment: Alignment.center,
@@ -111,159 +111,167 @@ class _firstState extends State<first> {
                         height: 5,
                       ),
                       Container(
-                        height: 400,
+                        height: myheight * 0.510204082,
                         child: ListView.builder(
                           itemCount: cartManager.items.value!.length,
                           itemBuilder: (context, index) {
-                            return Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  color: greyColor,
-                                  height: 150,
-                                  width: 110,
-                                  child: Image.network(
-                                    cartManager
-                                        .items.value![index].displayImage,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    Container(
-                                      width: 200,
-                                      child: Text(
-                                        cartManager
-                                            .items.value![index].productName,
-                                        style: const TextStyle(
-                                            letterSpacing: 2,
-                                            fontFamily: 'mp',
-                                            fontWeight: FontWeight.normal),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    color: greyColor,
+                                    height: 150,
+                                    width: 110,
+                                    child: Image.network(
                                       cartManager
-                                          .items.value![index].productDetail,
-                                      style: TextStyle(
-                                          fontSize: 12, fontFamily: 'mp'),
+                                          .items.value![index].displayImage,
+                                      fit: BoxFit.fill,
                                     ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            decreaseQuantity(index);
-                                          },
-                                          child: Container(
-                                            height: 20,
-                                            width: 20,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(50)),
-                                              border: Border.all(
-                                                  color: greyColor
-                                                      .withOpacity(0.4)),
-                                            ),
-                                            child: SvgPicture.asset(
-                                                "assets/svg/plus.svg"),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 12,
-                                        ),
-                                        Text(
-                                          '${quantities[index]}',
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        width: 200,
+                                        child: Text(
+                                          cartManager
+                                              .items.value![index].productName,
                                           style: const TextStyle(
-                                              fontSize: 18, fontFamily: 'mp'),
+                                              letterSpacing: 2,
+                                              fontFamily: 'mp',
+                                              fontWeight: FontWeight.normal),
                                         ),
-                                        const SizedBox(
-                                          width: 12,
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Container(
+                                        width: 0.555555556 * getScreenWidth(context),
+                                        child: Text(
+                                          cartManager
+                                              .items.value![index].productDetail,
+                                                softWrap: true, // Allow text to wrap onto multiple lines
+                                              maxLines: 2,    
+                                          style: TextStyle(
+                                              fontSize: 12, fontFamily: 'mp'),
                                         ),
-                                        InkWell(
-                                          onTap: () {
-                                            increaseQuantity(index);
-                                          },
-                                          child: Container(
-                                            height: 20,
-                                            width: 20,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(50)),
-                                              border: Border.all(
-                                                  color: greyColor
-                                                      .withOpacity(0.4)),
-                                            ),
-                                            child: SvgPicture.asset(
-                                                "assets/svg/plus2.svg"),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    SizedBox(
-                                      width: 200,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                                            MainAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            '\$${cartManager.items.value![index].productPrice}',
-                                            style: TextStyle(
-                                                fontSize: 19,
-                                                color: goldColor,
-                                                fontFamily: 'mp'),
-                                          ),
-                                          Spacer(),
                                           InkWell(
-                                            onTap: (){
-                                                      // Delete item from list
-                                                setState(() {
-                                                  cartManager.deleteItem(index);
-                                                  totalPrice = calculateTotal();
-
-                                                  quantities.removeAt(index);
-                                                });
+                                            onTap: () {
+                                              decreaseQuantity(index);
                                             },
-                                            child: Icon(Icons.delete))
-                                          // IconButton(
-                                          //     onPressed: () {
-                                          //       // Delete item from list
-                                          //       setState(() {
-                                          //         cartManager.deleteItem(index);
-                                          //         totalPrice = calculateTotal();
-
-                                          //         quantities.removeAt(index);
-                                          //       });
-                                          //     },
-                                          //     icon: Icon(Icons.delete))
+                                            child: Container(
+                                              height: 20,
+                                              width: 20,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(50)),
+                                                border: Border.all(
+                                                    color: greyColor
+                                                        .withOpacity(0.4)),
+                                              ),
+                                              child: SvgPicture.asset(
+                                                  "assets/svg/plus.svg"),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 12,
+                                          ),
+                                          Text(
+                                            '${quantities[index]}',
+                                            style: const TextStyle(
+                                                fontSize: 18, fontFamily: 'mp'),
+                                          ),
+                                          const SizedBox(
+                                            width: 12,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              increaseQuantity(index);
+                                            },
+                                            child: Container(
+                                              height: 20,
+                                              width: 20,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(50)),
+                                                border: Border.all(
+                                                    color: greyColor
+                                                        .withOpacity(0.4)),
+                                              ),
+                                              child: SvgPicture.asset(
+                                                  "assets/svg/plus2.svg"),
+                                            ),
+                                          ),
                                         ],
                                       ),
-                                    ),
-                                    SizedBox(height: 10,)
-                                  ],
-                                )
-                              ],
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      SizedBox(
+                                        width: 200,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(
+                                              '\$${cartManager.items.value![index].productPrice}',
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  color: goldColor,
+                                                  fontFamily: 'mp'),
+                                            ),
+                                            Spacer(),
+                                            InkWell(
+                                              onTap: (){
+                                                        // Delete item from list
+                                                  setState(() {
+                                                    cartManager.deleteItem(index);
+                                                    totalPrice = calculateTotal();
+                              
+                                                    quantities.removeAt(index);
+                                                  });
+                                              },
+                                              child: Icon(Icons.delete))
+                                            // IconButton(
+                                            //     onPressed: () {
+                                            //       // Delete item from list
+                                            //       setState(() {
+                                            //         cartManager.deleteItem(index);
+                                            //         totalPrice = calculateTotal();
+                              
+                                            //         quantities.removeAt(index);
+                                            //       });
+                                            //     },
+                                            //     icon: Icon(Icons.delete))
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 10,)
+                                    ],
+                                  )
+                                ],
+                              ),
                             );
                           },
                         ),

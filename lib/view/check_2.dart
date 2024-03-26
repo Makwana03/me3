@@ -10,8 +10,11 @@ import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/utils/prefrences.dart';
 import 'package:open_fashion__1/view/add_adddress_view.dart';
 import 'package:open_fashion__1/view/checkout_view.dart';
+import 'package:open_fashion__1/view/homepage_view.dart';
+import 'package:open_fashion__1/view/product_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/commun_dropdown.dart';
+import 'package:open_fashion__1/widgets/snackbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 AddAdressCantroller addAdressCantroller = AddAdressCantroller();
@@ -221,11 +224,10 @@ class _CheckoutState extends State<Checkout> {
                     style: TextStyle(fontFamily: 'mp'),
                   ),
                   Spacer(),
-                   Text(
-                      '\$${checkoutCantroller.totalPrice.toString()}',
-                      style: TextStyle(color: goldColor, fontFamily: 'mp'),
-                    ),
-                  
+                  Text(
+                    '\$${checkoutCantroller.totalPrice.toString()}',
+                    style: TextStyle(color: goldColor, fontFamily: 'mp'),
+                  ),
                 ],
               ),
             ),
@@ -236,9 +238,11 @@ class _CheckoutState extends State<Checkout> {
               ),
               onPressed: () {
                 // hit place order api
+                gUserData == null?CommonSnackBar.show(context, "Please Add Adress First"):
+
                 checkoutCantroller.placeOrder(
-                    checkoutCantroller.model.value, context);
-                ShowDilog();
+                    checkoutCantroller.model.value, checkoutCantroller.totalPrice.value, context);
+               gUserData!= null ? ShowDilog(): null;
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -276,159 +280,166 @@ class _CheckoutState extends State<Checkout> {
   void ShowDilog() {
     showDialog(
       context: context,
+      barrierDismissible: false, // Prevents user from tapping outside
+                                                                                              
       builder: (BuildContext context) {
         int selectedImage = 0;
-        return Obx(
-          () => Dialog(
-            insetPadding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
+        return WillPopScope(
+          onWillPop: ()async{
+            return false;
+          },
+          child: Obx(
+            () => Dialog(
+              insetPadding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () {
+                              // Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'PAYMENT SUCCESS',
-                          style: TextStyle(
-                            letterSpacing: 2.5,
-                            fontFamily: 'mp',
-                            fontSize: 23,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        SvgPicture.asset('assets/svg/done.svg'),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Your Payment was Success',
-                          style: TextStyle(
-                            fontFamily: 'mp',
-                            fontSize: 19,
-                            color: blackColor.withOpacity(0.8),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        const Text(
-                          'Payment ID 15022044',
-                          style: TextStyle(
-                            fontFamily: 'mp',
-                            fontSize: 16,
-                            color: greyColor,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        SvgPicture.asset('assets/svg/3.svg'),
-                        const SizedBox(height: 15),
-                        Text(
-                          'Rate your purchase',
-                          style: TextStyle(
-                            fontFamily: 'mp',
-                            fontSize: 19,
-                            color: blackColor.withOpacity(0.8),
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  print('1');
-                                  checkoutCantroller.selectedImage.value = 1;
-                                });
-                              },
-                              child: checkoutCantroller.selectedImage.value == 1
-                                  ? SvgPicture.asset('assets/svg/sadBold.svg')
-                                  : SvgPicture.asset('assets/svg/sad.svg'),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  checkoutCantroller.selectedImage.value = 2;
-                                });
-                              },
-                              child: checkoutCantroller.selectedImage.value == 2
-                                  ? SvgPicture.asset('assets/svg/happyBold.svg')
-                                  : SvgPicture.asset(
-                                      'assets/svg/happy.svg'),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  checkoutCantroller.selectedImage.value = 3;
-                                });
-                              },
-                              child: checkoutCantroller.selectedImage.value == 3
-                                  ? SvgPicture.asset('assets/svg/vHapppBold.svg')
-                                  : SvgPicture.asset('assets/svg/vHappy.svg'),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: blackColor,
-                            shape: const BeveledRectangleBorder(),
-                          ),
-                          onPressed: () {
-                            // Handle Submit action
-                          },
-                          child: const Text(
-                            'SUBMIT',
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'PAYMENT SUCCESS',
                             style: TextStyle(
-                              color: whiteColor,
+                              letterSpacing: 2.5,
                               fontFamily: 'mp',
+                              fontSize: 23,
                             ),
                           ),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: whiteColor,
-                            shape: const BeveledRectangleBorder(),
-                          ),
-                          onPressed: () {
-                            // Handle Back to Home action
-                          },
-                          child: const Text(
-                            'BACK TO HOME',
+                          const SizedBox(height: 20),
+                          SvgPicture.asset('assets/svg/done.svg'),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Your Order was Success',
                             style: TextStyle(
-                              color: blackColor,
                               fontFamily: 'mp',
+                              fontSize: 19,
+                              color: blackColor.withOpacity(0.8),
                             ),
                           ),
-                        ),
-                      ],
+                          
+                          const SizedBox(height: 15),
+                          SvgPicture.asset('assets/svg/3.svg'),
+                          const SizedBox(height: 15),
+                          Text(
+                            'Rate your purchase',
+                            style: TextStyle(
+                              fontFamily: 'mp',
+                              fontSize: 19,
+                              color: blackColor.withOpacity(0.8),
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    print('1');
+                                    checkoutCantroller.selectedImage.value = 1;
+                                  });
+                                },
+                                child: checkoutCantroller.selectedImage.value == 1
+                                    ? SvgPicture.asset('assets/svg/sadBold.svg')
+                                    : SvgPicture.asset('assets/svg/sad.svg'),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    checkoutCantroller.selectedImage.value = 2;
+                                  });
+                                },
+                                child: checkoutCantroller.selectedImage.value == 2
+                                    ? SvgPicture.asset('assets/svg/happyBold.svg')
+                                    : SvgPicture.asset('assets/svg/happy.svg'),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    checkoutCantroller.selectedImage.value = 3;
+                                  });
+                                },
+                                child: checkoutCantroller.selectedImage.value == 3
+                                    ? SvgPicture.asset(
+                                        'assets/svg/vHapppBold.svg')
+                                    : SvgPicture.asset('assets/svg/vHappy.svg'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // ElevatedButton(
+                          //   style: ElevatedButton.styleFrom(
+                          //     backgroundColor: blackColor,
+                          //     shape: const BeveledRectangleBorder(),
+                          //   ),
+                          //   onPressed: () {
+                          //     // Handle Submit action
+                          //   },
+                          //   child: const Text(
+                          //     'SUBMIT',
+                          //     style: TextStyle(
+                          //       color: whiteColor,
+                          //       fontFamily: 'mp',
+                          //     ),
+                          //   ),
+                          // ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: whiteColor,
+                              shape: const BeveledRectangleBorder(),
+                            ),
+                            onPressed: () async {
+                              // Handle Back to Home action
+                              await cartManager.clearList();
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FirstScreen(),
+                                  ),
+                                  (route) => false);
+                              Get.offAll(FirstScreen());
+                            },
+                            child: const Text(
+                              'BACK TO HOME',
+                              style: TextStyle(
+                                color: blackColor,
+                                fontFamily: 'mp',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_fashion__1/allUrl/all_url.dart';
@@ -6,6 +8,7 @@ import 'package:open_fashion__1/model/add_address_model.dart';
 import 'package:open_fashion__1/utils/prefrences.dart';
 import 'package:open_fashion__1/utils/shared_helper.dart';
 import 'package:open_fashion__1/view/check_2.dart';
+import 'package:open_fashion__1/widgets/snackbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddAdressCantroller extends GetxController {
@@ -42,12 +45,12 @@ class AddAdressCantroller extends GetxController {
       "address": address,
       "zip_code": zipCode
     };
-  
+
     try {
       changeLoading(true);
       var response =
           await postMethod("$baseUrl$addAdress", body, headers, context);
-          
+
       if (response.statusCode == 200) {
         changeLoading(false);
         userAddress.value = userAddressFromJson(response.body);
@@ -57,10 +60,14 @@ class AddAdressCantroller extends GetxController {
         sharedPreferencesHelper.putString(Preferences.userAdd, response.body);
         print(userAddress.value.toString());
         print(userAddress.value!.data);
-        count +=1;
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Checkout(),));
+        count += 1;
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => Checkout(),
+        ));
       } else {
-        print(response.body);
+        var encodeBody = jsonDecode(response.body);
+        print(encodeBody['message']);
+        CommonSnackBar.show(context, encodeBody['message']);
         changeLoading(false);
       }
     } catch (e) {

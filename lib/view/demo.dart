@@ -110,7 +110,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
                 );
               }).toList(),
             ),
-            const SizedBox(height: 20),
+
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.center,
             //   children: [
@@ -140,10 +140,8 @@ class _ShoppingPageState extends State<ShoppingPage> {
             //     ),
             //   ],
             // ),
-            const SizedBox(height: 20),
-            const SizedBox(
-              height: 70,
-            ),
+            const SizedBox(height: 35),
+           
             const ContactDetails(),
           ],
         ),

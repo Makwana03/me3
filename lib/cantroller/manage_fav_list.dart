@@ -10,6 +10,12 @@ class CartManager extends GetxController {
 
   List<ProductDetail> items2 = [];
 
+  Future<void> clearList()async{
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('custom_items');
+    items.value = null;
+    
+  }
   
   Future<List<ProductDetail>?> getItems() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

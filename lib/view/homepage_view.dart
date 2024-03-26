@@ -180,7 +180,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       )
                     ],
                   ),
-                  SizedBox(height: myheight * 0.04),
+                  SizedBox(height: myheight * 0.001),
                   Text(
                     "NEW ARRIVAL",
                     style: TextStyle(
@@ -196,10 +196,10 @@ class _FirstScreenState extends State<FirstScreen> {
                           child: LoadingProgressDialog(),
                         )
                       : homePageCantroller.categorysModel.value == null
-                          ? SizedBox(
+                          ?const  SizedBox(
                               height: 1,
                             )
-                          : SizedBox(height: currentHeoght * 0.701530612,child: CustomTabView()),
+                          : SizedBox(height: currentHeoght * 0.701530612,child:const  CustomTabView()),
                   SizedBox(
                     height: myheight * 0.00,
                   ),
@@ -395,7 +395,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                 padding: const EdgeInsets.all(8),
                                 child: homePageCantroller.storeModel.value?.store.follow.isEmpty ==
                                         null
-                                    ? SizedBox(
+                                    ? const SizedBox(
                                         height: 0,
                                       )
                                     : Row(
@@ -424,7 +424,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                                         .store
                                                         .follow[0]
                                                         .name,
-                                                    style: TextStyle(
+                                                    style:const  TextStyle(
                                                         color: whiteColor,
                                                         fontFamily: 'mp'),
                                                   ))
@@ -437,7 +437,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                                     .storeModel
                                                     .value!
                                                     .store
-                                                    .follow.length<2 ? SizedBox(): 
+                                                    .follow.length<2 ?const SizedBox(): 
                                           Stack(
                                             children: [
                                               Image.network(
@@ -461,7 +461,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                                         .store
                                                         .follow[1]
                                                         .name,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: whiteColor,
                                                         fontFamily: 'mp'),
                                                   ))
@@ -479,7 +479,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                 child: 
                                 homePageCantroller.storeModel.value ==
                                         null
-                                    ? SizedBox(
+                                    ?const  SizedBox(
                                         height: 0,
                                       ):
                                 Row(
@@ -488,7 +488,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                                     .storeModel
                                                     .value!
                                                     .store
-                                                    .follow.length<3? SizedBox(): 
+                                                    .follow.length<3?const SizedBox(): 
                                     Stack(
                                       children: [
                                         Image.network(
@@ -504,7 +504,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                             child: Text(
                                               homePageCantroller.storeModel
                                                   .value!.store.follow[2].name,
-                                              style: TextStyle(
+                                              style:const TextStyle(
                                                   color: whiteColor,
                                                   fontFamily: 'mp'),
                                             ))
@@ -517,7 +517,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                                     .storeModel
                                                     .value!
                                                     .store
-                                                    .follow.length<4 ? SizedBox(): Stack(
+                                                    .follow.length<4 ?const  SizedBox(): Stack(
                                       children: [
                                         Image.network(
                                           homePageCantroller.storeModel.value!
@@ -532,7 +532,7 @@ class _FirstScreenState extends State<FirstScreen> {
                                             child: Text(
                                               homePageCantroller.storeModel
                                                   .value!.store.follow[3].name,
-                                              style: TextStyle(
+                                              style:const TextStyle(
                                                   color: whiteColor,
                                                   fontFamily: 'mp'),
                                             ))
@@ -548,7 +548,7 @@ class _FirstScreenState extends State<FirstScreen> {
                             ? Center(
                                 child: LoadingProgressDialog(),
                               )
-                            : ContactDetails(),
+                            :const  ContactDetails(),
                       ],
                     ),
                   ),

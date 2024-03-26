@@ -51,11 +51,7 @@ class CommonAppBarScreen extends StatelessWidget {
       centerTitle: true,
       actions: <Widget>[
         InkWell(
-          child: isCart
-              ? SizedBox(
-                  width: 1,
-                )
-              : Obx(
+          child: Obx(
                   () => badges.Badge(
                     // position: badges.BadgePosition.topEnd(top: -10, end: -12),
                     
@@ -78,6 +74,7 @@ class CommonAppBarScreen extends StatelessWidget {
                   ),
                 ),
           onTap: () {
+            isCart? null :
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => first(),
             ));
