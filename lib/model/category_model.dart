@@ -57,7 +57,7 @@ class Category {
 }
 
 class ProductDetail {
-    int id;
+    int? id;
     String displayImage;
     String productName;
     String productDetail;

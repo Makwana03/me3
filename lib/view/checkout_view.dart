@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:open_fashion__1/all_method/http_methodes.dart';
 import 'package:open_fashion__1/cantroller/checkout_cantroller.dart';
 import 'package:open_fashion__1/cantroller/manage_fav_list.dart';
@@ -25,14 +27,13 @@ class first extends StatefulWidget {
 
 class _firstState extends State<first> {
   late double itemPrice;
-   List<int> quantities=[];
 
   @override
   void initState() {
-    
     // quantities = List<int>.filled(
     //     cartManager.items.value == null ? 0 : cartManager.items.value!.length,
     //     1);
+    
     super.initState();
   }
 
@@ -42,54 +43,49 @@ class _firstState extends State<first> {
       return 0;
     }
     for (int i = 0; i < cartManager.items.value!.length; i++) {
-      total += cartManager.items.value![i].productPrice * quantities[i];
+      total += cartManager.items.value![i].productPrice *cartManager.items.value![i].quantity;
     }
-    print(" This is Total $total");
     return total;
   }
 
   void increaseQuantity(int index) {
     setState(() {
-      quantities[index]++;
+      cartManager.increaseQuantity(index ,context);
     });
   }
 
   void decreaseQuantity(int index) {
-    if (quantities[index] > 1) {
+    if (cartManager.items.value![index].quantity > 1) {
       setState(() {
-        quantities[index]--;
+        cartManager.decreaseQuantity(index,context);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (cartManager.items.value != null) {
-      for (var el in cartManager.items.value!){
-      quantities.add(1);
-    }
-    }else{
-      quantities= [];
-    }
+    
     double totalPrice = calculateTotal();
     double myheight = MediaQuery.of(context).size.height;
     double mywidth = MediaQuery.of(context).size.width;
 
     return Obx(
       () => Scaffold(
-        appBar:  PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size.fromHeight(myheight * 0.076530612),
-          child: CommonAppBarScreen(isCart: true,),
+          child: CommonAppBarScreen(
+            isCart: true,
+          ),
         ),
         body: Center(
           child: Padding(
-            padding:  EdgeInsets.all(myheight * 0.012755102),
+            padding: EdgeInsets.all(myheight * 0.012755102),
             child: cartManager.items.value == null
                 ? Center(child: Text("NO Data Availbale"))
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                       SizedBox(
+                      SizedBox(
                         height: myheight * 0.012755102,
                       ),
                       Align(
@@ -105,13 +101,13 @@ class _firstState extends State<first> {
                       ),
                       SvgPicture.asset(
                         'assets/svg/3.svg',
-                        width: 160,
+                        width: 0.204081 * myheight,
                       ),
                       const SizedBox(
                         height: 5,
                       ),
                       Container(
-                        height: myheight * 0.510204082,
+                        height: myheight * 0.5620204082,
                         child: ListView.builder(
                           itemCount: cartManager.items.value!.length,
                           itemBuilder: (context, index) {
@@ -134,7 +130,8 @@ class _firstState extends State<first> {
                                     width: 5,
                                   ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       const SizedBox(
@@ -155,12 +152,14 @@ class _firstState extends State<first> {
                                         height: 8,
                                       ),
                                       Container(
-                                        width: 0.555555556 * getScreenWidth(context),
+                                        width: 0.555555556 *
+                                            getScreenWidth(context),
                                         child: Text(
-                                          cartManager
-                                              .items.value![index].productDetail,
-                                                softWrap: true, // Allow text to wrap onto multiple lines
-                                              maxLines: 2,    
+                                          cartManager.items.value![index]
+                                              .productDetail,
+                                          softWrap:
+                                              true, // Allow text to wrap onto multiple lines
+                                          maxLines: 2,
                                           style: TextStyle(
                                               fontSize: 12, fontFamily: 'mp'),
                                         ),
@@ -194,11 +193,15 @@ class _firstState extends State<first> {
                                           const SizedBox(
                                             width: 12,
                                           ),
-                                          Text(
-                                            '${quantities[index]}',
-                                            style: const TextStyle(
-                                                fontSize: 18, fontFamily: 'mp'),
-                                          ),
+                                          
+                                           Obx(()=>
+                                              Text(
+                                                '${cartManager.items.value?[index].quantity}',
+                                                style: const TextStyle(
+                                                    fontSize: 18, fontFamily: 'mp'),
+                                              ),
+                                           ),
+                                          
                                           const SizedBox(
                                             width: 12,
                                           ),
@@ -236,30 +239,32 @@ class _firstState extends State<first> {
                                           children: [
                                             Text(
                                               '\$${cartManager.items.value![index].productPrice}',
-                                              style: TextStyle(
+                                              style:const TextStyle(
                                                   fontSize: 19,
                                                   color: goldColor,
                                                   fontFamily: 'mp'),
                                             ),
                                             Spacer(),
                                             InkWell(
-                                              onTap: (){
-                                                        // Delete item from list
+                                                onTap: () {
+                                                  // Delete item from list
                                                   setState(() {
-                                                    cartManager.deleteItem(index);
-                                                    totalPrice = calculateTotal();
-                              
-                                                    quantities.removeAt(index);
+                                                    cartManager
+                                                        .deleteItem(index ,context);
+                                                    totalPrice =
+                                                        calculateTotal();
+
+                                                    // quantities.removeAt(index);
                                                   });
-                                              },
-                                              child: Icon(Icons.delete))
+                                                },
+                                                child: Icon(Icons.delete))
                                             // IconButton(
                                             //     onPressed: () {
                                             //       // Delete item from list
                                             //       setState(() {
                                             //         cartManager.deleteItem(index);
                                             //         totalPrice = calculateTotal();
-                              
+
                                             //         quantities.removeAt(index);
                                             //       });
                                             //     },
@@ -267,7 +272,9 @@ class _firstState extends State<first> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 10,)
+                                    const  SizedBox(
+                                        height: 10,
+                                      )
                                     ],
                                   )
                                 ],
@@ -276,44 +283,43 @@ class _firstState extends State<first> {
                           },
                         ),
                       ),
-                                            const Spacer(),
+                      const Spacer(),
 
-                      
-                      const SizedBox(
-                        height: 20,
+                      // const SizedBox(
+                      //   height: 20,
+                      //   child: Divider(
+                      //     thickness: 1.5,
+                      //   ),
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     const SizedBox(
+                      //       width: 25,
+                      //     ),
+                      //     SvgPicture.asset('assets/svg/cupon.svg'),
+                      //     const SizedBox(
+                      //       width: 15,
+                      //     ),
+                      //     const Text(
+                      //       "Add promo code",
+                      //       style: TextStyle(fontFamily: 'mp'),
+                      //     )
+                      //   ],
+                      // ),
+                       SizedBox(
+                        height: 0.031887755 * myheight,
                         child: Divider(
                           thickness: 1.5,
                         ),
                       ),
                       Row(
                         children: [
-                          const SizedBox(
-                            width: 25,
-                          ),
-                          SvgPicture.asset('assets/svg/cupon.svg'),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          const Text(
-                            "Add promo code",
-                            style: TextStyle(fontFamily: 'mp'),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 25,
-                        child: Divider(
-                          thickness: 1.5,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 25,
+                           SizedBox(
+                            height: 0.031887755 * myheight,
                           ),
                           SvgPicture.asset('assets/svg/door.svg'),
-                          const SizedBox(
-                            width: 15,
+                           SizedBox(
+                            width: 0.019132653 * myheight,
                           ),
                           const Text(
                             "Delivery",
@@ -324,13 +330,13 @@ class _firstState extends State<first> {
                             "Free",
                             style: TextStyle(fontFamily: 'mp'),
                           ),
-                          const SizedBox(
-                            width: 35,
+                           SizedBox(
+                            width: 0.044642857 * myheight,
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
+                       SizedBox(
+                        height: 0.019132653 * myheight,
                         child: Divider(
                           thickness: 1.5,
                         ),
@@ -359,6 +365,9 @@ class _firstState extends State<first> {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        height: 5,
+                      )
                     ],
                   ),
           ),
@@ -370,8 +379,8 @@ class _firstState extends State<first> {
                     backgroundColor: Colors.black,
                     shape: BeveledRectangleBorder()),
                 onPressed: () {
-                  print(totalPrice);
-                  checkoutCantroller.setValues(totalPrice~/1 , cartManager.items.value!);
+                  checkoutCantroller.setValues(
+                      totalPrice ~/ 1, cartManager.items.value!);
                   Navigator.push(
                       context,
                       MaterialPageRoute(

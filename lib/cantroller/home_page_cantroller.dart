@@ -167,9 +167,9 @@ class mygrid extends StatelessWidget {
             width: width-20,
             child: Center(
               child: Text(
-                model.productName,
+                model.productName.replaceAll('\n',''),
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77),
+                style: TextStyle(fontFamily: 'mp', fontSize: myheight / 65),
               ),
             ),
           ),
@@ -179,7 +179,7 @@ class mygrid extends StatelessWidget {
             child: Center(
               child: Text(
                 model.productDetail,
-                style: TextStyle(fontFamily: 'mp', fontSize: myheight / 77,overflow: TextOverflow.ellipsis),
+                style: TextStyle(fontFamily: 'mp', fontSize: myheight / 72,overflow: TextOverflow.ellipsis),
               ),
             ),
           ),

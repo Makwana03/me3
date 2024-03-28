@@ -179,7 +179,8 @@ class _FirstScreenState extends State<FirstScreen> {
                                 : _buildBottomNavigationBar()),
                       )
                     ],
-                  ),
+                  ),SizedBox(height: myheight * 0.034,),
+
                   SizedBox(height: myheight * 0.001),
                   Text(
                     "NEW ARRIVAL",
@@ -199,9 +200,9 @@ class _FirstScreenState extends State<FirstScreen> {
                           ?const  SizedBox(
                               height: 1,
                             )
-                          : SizedBox(height: currentHeoght * 0.701530612,child:const  CustomTabView()),
+                          : SizedBox(height: currentHeoght * 0.721530612,child:const  CustomTabView()),
                   SizedBox(
-                    height: myheight * 0.00,
+                    height: myheight * 0.01,
                   ),
                   InkWell(
                     onTap: () {
@@ -231,6 +232,9 @@ class _FirstScreenState extends State<FirstScreen> {
                         const Icon(Icons.arrow_forward)
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: myheight * 0.01,
                   ),
                   SizedBox(
                     height: myheight * 0.02,
@@ -331,7 +335,10 @@ class _FirstScreenState extends State<FirstScreen> {
                                 SvgPicture.asset(
                                   "assets/svg/mp3.svg",
                                 ),
-                                const Text("Unique desings"),
+                                 Text("Unique desings",style: TextStyle(
+                                      fontFamily: "mp",
+                                      fontSize: myheight / 60,
+                                      color: Colors.black87),),
                                 Text(
                                   "and high quality materials.",
                                   style: TextStyle(
@@ -349,7 +356,10 @@ class _FirstScreenState extends State<FirstScreen> {
                                 SvgPicture.asset(
                                   "assets/svg/mp5.svg",
                                 ),
-                                const Text("Fast shipping"),
+                                 Text("Fast shipping",style: TextStyle(
+                                      fontFamily: "mp",
+                                      fontSize: myheight / 60,
+                                      color: Colors.black87),),
                                 Text(
                                   "free order over  \$25.",
                                   style: TextStyle(

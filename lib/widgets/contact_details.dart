@@ -46,7 +46,7 @@ class ContactDetails extends StatelessWidget {
                 child: SvgPicture.asset("assets/svg/twiter.svg")),
                  InkWell(
                 onTap: () {
-                  _launchURL();
+                  // _launchURL();
                 },
                 child: SvgPicture.asset("assets/svg/instagram2.svg")),
             // SvgPicture.asset("assets/svg/instagram2.svg"),

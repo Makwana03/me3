@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:open_fashion__1/cantroller/home_page_cantroller.dart';
 import 'package:open_fashion__1/model/category_model.dart';
 import 'package:open_fashion__1/utils/constans.dart';
@@ -39,6 +37,7 @@ class TabPage extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: myheight * 0.01,),
             list.length <= 2
                 ? const SizedBox(
                     height: 1,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_fashion__1/cantroller/manage_fav_list.dart';
 import 'package:open_fashion__1/model/category_model.dart';
+import 'package:open_fashion__1/model/product_with_quantity.dart';
 import 'package:open_fashion__1/utils/constans.dart';
 import 'package:open_fashion__1/view/checkout_view.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
@@ -19,12 +20,7 @@ class ProductDetailView extends StatefulWidget {
 }
 
 class _ProductDetailViewState extends State<ProductDetailView> {
-  List<String> ringImages = [
-    "assets/images/ring_normal.jpg",
-    "assets/images/ring_front.jpg",
-    "assets/images/ring_side.jpg",
-    "assets/images/f.jpg"
-  ];
+  
 
   int selectedIndex = 0;
 
@@ -48,17 +44,34 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               SizedBox(
-                height: currentHeight * 0.446428571,
-                width: double.infinity,
-                child: Image.network(
+              height: currentHeight * 0.446428571,
+              child:   PageView.builder(
+                          itemCount:
+                             widget.model.productImages.length,
+                          onPageChanged: (value) {
+                            setState(() {
+                              selectedIndex = value;
+                            });
+                          },
+                          itemBuilder: (context, index) {
+                            return    Image.network(
                   widget.model.productImages[selectedIndex].productImage,
                   fit: BoxFit.cover,
-                ),
+                );
+                          },
+                        ),
+              //   width: double.infinity,
+              //   child: Image.network(
+              //     widget.model.productImages[selectedIndex].productImage,
+              //     fit: BoxFit.cover,
+              //   ),
               ),
               SizedBox(height: currentHeight * 0.025510204),
               SizedBox(
                 height: currentHeight * 0.089285714,
+                
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: widget.model.productImages.length,
@@ -100,15 +113,15 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: 0.833333333 *getScreenWidth(context) ,
+                        width: 0.833333333 * getScreenWidth(context),
                         child: Text(
+                          maxLines: 2,
                           widget.model.productDetail,
-                    
-                          style: TextStyle(
+                          style:const  TextStyle(
                             
                             fontFamily: "mp",
                             overflow: TextOverflow.ellipsis,
-                            fontSize: 22,
+                            fontSize: 20,
                             letterSpacing: 0,
                           ),
                         ),
@@ -198,7 +211,16 @@ class _ProductDetailViewState extends State<ProductDetailView> {
       ),
       bottomNavigationBar: InkWell(
         onTap: () {
-          cartManager.saveItemsToPrefs(widget.model);
+          cartManager.saveItemsToPrefs(ProductWithQuantity(
+              id: widget.model.id!,
+              displayImage: widget.model.displayImage,
+              productName: widget.model.productName,
+              productDetail: widget.model.productDetail,
+              productPrice:widget.model. productPrice,
+              productDiscount:widget.model. productDiscount,
+              categoryId: widget.model.categoryId,
+              productImages:widget.model. productImages,
+              quantity: 1),context);
           print(" Value Add sucessfuly");
           // Navigator.push(
           //     context,
@@ -211,29 +233,32 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           decoration: const BoxDecoration(color: blackColor),
-          child: const Row(
-            children: [
-              Icon(
-                Icons.add,
-                color: whiteColor,
-                size: 28,
-              ),
-              SizedBox(width: 15),
-              Text(
-                "ADD TO BASKET",
-                style: TextStyle(
-                  fontFamily: "mp",
+          child: const Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.add,
                   color: whiteColor,
-                  fontSize: 20,
+                  size: 28,
                 ),
-              ),
-              Spacer(),
-              Icon(
-                Icons.favorite_border_outlined,
-                color: whiteColor,
-                size: 28,
-              )
-            ],
+                SizedBox(width: 15),
+                Text(
+                  "ADD TO BASKET",
+                  style: TextStyle(
+                    fontFamily: "mp",
+                    color: whiteColor,
+                    fontSize: 20,
+                  ),
+                ),
+                // Spacer(),
+                // Icon(
+                //   Icons.favorite_border_outlined,
+                //   color: whiteColor,
+                //   size: 28,
+                // )
+              ],
+            ),
           ),
         ),
       ),

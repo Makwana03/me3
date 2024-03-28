@@ -6,12 +6,14 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:open_fashion__1/allUrl/all_url.dart';
 import 'package:open_fashion__1/all_method/http_methodes.dart';
 import 'package:open_fashion__1/model/category_model.dart';
+import 'package:open_fashion__1/model/product_with_quantity.dart';
 import 'package:open_fashion__1/view/check_2.dart';
+import 'package:open_fashion__1/view/product_view.dart';
 
 class CheckoutCantroller extends GetxController {
   RxInt totalPrice=  0.obs;
   RxInt selectedImage=  0.obs;
-  RxList<ProductDetail>model =[ ProductDetail(
+  RxList<ProductWithQuantity>model =[ ProductWithQuantity(
       id: 1,
       displayImage: '',
       productName: '',
@@ -19,14 +21,13 @@ class CheckoutCantroller extends GetxController {
       productPrice: 0,
       productDiscount: 0,
       categoryId: 0,
-      productImages: [])].obs;
-  Rx<int> quentity = 0.obs;
+      productImages: [],quantity: 0)].obs;
   void setValues(int totalPrice2 , var list) {
     totalPrice.value = totalPrice2;
     model.value = list;
   }
 
-  Future<void> placeOrder(List<ProductDetail> products,int totalPrice, BuildContext context) async {
+  Future<void> placeOrder(List<ProductWithQuantity> products,int totalPrice, BuildContext context) async {
     List<Map<String , dynamic>> allProduct =[];
     Map<String, int> product = {
       "productID": 1,

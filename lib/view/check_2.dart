@@ -178,7 +178,7 @@ class _CheckoutState extends State<Checkout> {
                         value = selectedValue;
                       });
                     },
-                    items: const ['PICKUP AT STORE', 'DELVIR AT HOME'],
+                    items: const ['PICKUP AT STORE', 'DELIVER AT HOME'],
                     value: selectedValue,
                     hint: 'Select Shipping Method',
                   ),
@@ -241,7 +241,7 @@ class _CheckoutState extends State<Checkout> {
                 gUserData == null?CommonSnackBar.show(context, "Please Add Adress First"):
 
                 checkoutCantroller.placeOrder(
-                    checkoutCantroller.model.value, checkoutCantroller.totalPrice.value, context);
+                    checkoutCantroller.model, checkoutCantroller.totalPrice.value, context);
                gUserData!= null ? ShowDilog(): null;
               },
               child: Row(
@@ -249,7 +249,7 @@ class _CheckoutState extends State<Checkout> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: height * 0.06,
+                    height: height * 0.07,
                     width: width * 0.06,
                     child: SvgPicture.asset(
                       'assets/svg/s-bag_white.svg',
