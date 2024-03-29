@@ -81,7 +81,7 @@ class _firstState extends State<first> {
           child: Padding(
             padding: EdgeInsets.all(myheight * 0.012755102),
             child: cartManager.items.value == null
-                ? Center(child: Text("NO Data Availbale"))
+                ? Center(child:  Image.asset('assets/images/download.jpeg'),)
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -107,7 +107,7 @@ class _firstState extends State<first> {
                         height: 5,
                       ),
                       Container(
-                        height: myheight * 0.5620204082,
+                        height: myheight * 0.5520204082,
                         child: ListView.builder(
                           itemCount: cartManager.items.value!.length,
                           itemBuilder: (context, index) {
@@ -373,7 +373,7 @@ class _firstState extends State<first> {
           ),
         ),
         bottomNavigationBar: SizedBox(
-            height: myheight * 0.06,
+            height: myheight * 0.07,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
@@ -405,7 +405,7 @@ class _firstState extends State<first> {
                       'CHECKOUT',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: whiteColor, fontFamily: 'mp', fontSize: 17),
+                          color: whiteColor, fontFamily: 'mp', fontSize: 20),
                     ),
                   ],
                 ))),

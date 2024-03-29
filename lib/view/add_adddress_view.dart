@@ -5,10 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_fashion__1/cantroller/add_address_cantroller.dart';
 
 import 'package:open_fashion__1/utils/constans.dart';
+import 'package:open_fashion__1/view/check_2.dart';
 import 'package:open_fashion__1/widgets/common_app_bar.dart';
 import 'package:open_fashion__1/widgets/common_textfiled.dart';
 
-AddAdressCantroller addAdressCantroller = AddAdressCantroller();
 
 class AddAdress extends StatefulWidget {
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
@@ -41,7 +41,7 @@ class _AddAdressState extends State<AddAdress> {
     double height = getScreenHeight(context);
     double width = getScreenWidth(context);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60.0),
         child: CommonAppBarScreen(),
@@ -155,6 +155,7 @@ class _AddAdressState extends State<AddAdress> {
                           inputType: TextInputType.number,
                           formatter: [zipCodeLengthFormatter],
                           length: 60,
+                          isZipCode: true,
                           onTap: () {},
                         ),
                       ),
@@ -189,10 +190,10 @@ class _AddAdressState extends State<AddAdress> {
             if (AddAdress._key.currentState!.validate()) {
               addAdressCantroller.addadressData(
                   context,
-                  _firstNameController.text,
-                  _lastNameController.text,
-                  _cityCantroller.text,
-                  _stateControlle.text,
+                  _firstNameController.text.trim(),
+                  _lastNameController.text.trim(),
+                  _cityCantroller.text.trim(),
+                  _stateControlle.text.trim(),
                   _mobileController.text,
                   _addressCantoler.text,
                   _zipeCodeControlle.text);
@@ -205,5 +206,31 @@ class _AddAdressState extends State<AddAdress> {
         ),
       ),
     );
+  }
+}
+class Dash extends StatefulWidget {
+  @override
+  Dashe createState() => Dashe();
+}
+class Dashe extends State<Dash> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    print("Prasha");
+
+    return Scaffold(
+      body: PageView.builder(
+          itemCount: 1,
+          scrollDirection: Axis.horizontal,
+          physics: const NeverScrollableScrollPhysics(),
+          onPageChanged: (index) {},
+          itemBuilder: (_, index) {
+              return AddAdress();
+          }),
+      
+      );
   }
 }

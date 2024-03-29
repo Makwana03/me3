@@ -2,7 +2,7 @@
 <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="open_fashion__1"
+        android:label="Open Fashion"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

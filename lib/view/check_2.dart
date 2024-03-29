@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:open_fashion__1/cantroller/add_address_cantroller.dart';
 import 'package:open_fashion__1/cantroller/checkout_cantroller.dart';
 import 'package:open_fashion__1/model/add_address_model.dart';
@@ -33,15 +34,16 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   String selectedValue = "PICKUP AT STORE";
   String selPaymnt = "COD";
-  UserAddress? userAddress;
   bool haveAddress = false;
 
   Future<void> checkIfValueExists() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     if (prefs.containsKey(Preferences.userAdd)) {
+        UserAddress? userAddress;
+
       userAddress = userAddressFromJson(prefs.getString(Preferences.userAdd)!);
-      gUserData = userAddress == null ? null : userAddress;
+      gUserData = userAddress;
+      addAdressCantroller.userAddress.value = userAddress;
     }
     setState(() {});
   }
@@ -66,9 +68,28 @@ class _CheckoutState extends State<Checkout> {
             "${userAddress2.data.city} , ${userAddress2.data.state}",
             style: TextStyle(fontFamily: 'mp'),
           ),
-          Text(
-            userAddress2.data.mobileNumber,
-            style: TextStyle(fontFamily: 'mp'),
+          Row(
+            children: [
+              Text(
+                userAddress2.data.mobileNumber,
+                style: TextStyle(fontFamily: 'mp'),
+              ),
+              Spacer(),
+              InkWell(
+                  onTap: () async {
+                    // clear data
+                    gUserData = null;
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    await prefs.remove(Preferences.userAdd);
+                    // checkIfValueExists();
+                    addAdressCantroller.userAddress.value = null;
+                    CommonSnackBar.show(context, "Address Deleted");
+                  },
+                  child: Icon(Icons.delete)),
+
+              // Text("Delete Addres/s")
+            ],
           ),
         ],
       ),
@@ -108,55 +129,64 @@ class _CheckoutState extends State<Checkout> {
               'assets/svg/5.svg',
               height: height * 0.014,
             ),
-            Container(
-              alignment: Alignment.topLeft,
-              color: whiteColor,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'SHIPPING ADDRESS',
-                      style: TextStyle(color: greyColor, fontFamily: 'mp'),
-                    ),
-                    gUserData == null
-                        ? Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                              onTap: () {
-                                count += 1;
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const AddAdress(),
-                                ));
-                              },
-                              child: Container(
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(50),
-                                  ),
-                                  color: Colors.grey[200],
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Add Shipping Address',
-                                        style: TextStyle(fontFamily: 'mp'),
+            Obx(
+              () => Container(
+                alignment: Alignment.topLeft,
+                color: whiteColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'SHIPPING ADDRESS',
+                        style: TextStyle(color: greyColor, fontFamily: 'mp'),
+                      ),
+                      addAdressCantroller.userAddress.value != null
+                          ? addressWidget(
+                              addAdressCantroller.userAddress.value!)
+                          :
+                           gUserData == null
+                              ? Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      count += 1;
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => const AddAdress(),
+                                      ));
+                                    },
+                                    child: Container(
+                                      height: 45,
+                                      decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(50),
+                                        ),
+                                        color: Colors.grey[200],
                                       ),
-                                      Spacer(),
-                                      Icon(Icons.add),
-                                    ],
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Add Shipping Address',
+                                              style:
+                                                  TextStyle(fontFamily: 'mp'),
+                                            ),
+                                            Spacer(),
+                                            Icon(Icons.add),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          )
-                        : addressWidget(gUserData!),
-                  ],
+                                )
+                              : addressWidget(gUserData!),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -238,11 +268,11 @@ class _CheckoutState extends State<Checkout> {
               ),
               onPressed: () {
                 // hit place order api
-                gUserData == null?CommonSnackBar.show(context, "Please Add Adress First"):
-
-                checkoutCantroller.placeOrder(
-                    checkoutCantroller.model, checkoutCantroller.totalPrice.value, context);
-               gUserData!= null ? ShowDilog(): null;
+                gUserData == null
+                    ? CommonSnackBar.show(context, "Please Add Adress First")
+                    : checkoutCantroller.placeOrder(checkoutCantroller.model,
+                        checkoutCantroller.totalPrice.value, context);
+                gUserData != null ? ShowDilog() : null;
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -281,11 +311,11 @@ class _CheckoutState extends State<Checkout> {
     showDialog(
       context: context,
       barrierDismissible: false, // Prevents user from tapping outside
-                                                                                              
+
       builder: (BuildContext context) {
         int selectedImage = 0;
         return WillPopScope(
-          onWillPop: ()async{
+          onWillPop: () async {
             return false;
           },
           child: Obx(
@@ -312,8 +342,8 @@ class _CheckoutState extends State<Checkout> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -336,7 +366,6 @@ class _CheckoutState extends State<Checkout> {
                               color: blackColor.withOpacity(0.8),
                             ),
                           ),
-                          
                           const SizedBox(height: 15),
                           SvgPicture.asset('assets/svg/3.svg'),
                           const SizedBox(height: 15),
@@ -359,7 +388,8 @@ class _CheckoutState extends State<Checkout> {
                                     checkoutCantroller.selectedImage.value = 1;
                                   });
                                 },
-                                child: checkoutCantroller.selectedImage.value == 1
+                                child: checkoutCantroller.selectedImage.value ==
+                                        1
                                     ? SvgPicture.asset('assets/svg/sadBold.svg')
                                     : SvgPicture.asset('assets/svg/sad.svg'),
                               ),
@@ -369,8 +399,10 @@ class _CheckoutState extends State<Checkout> {
                                     checkoutCantroller.selectedImage.value = 2;
                                   });
                                 },
-                                child: checkoutCantroller.selectedImage.value == 2
-                                    ? SvgPicture.asset('assets/svg/happyBold.svg')
+                                child: checkoutCantroller.selectedImage.value ==
+                                        2
+                                    ? SvgPicture.asset(
+                                        'assets/svg/happyBold.svg')
                                     : SvgPicture.asset('assets/svg/happy.svg'),
                               ),
                               InkWell(
@@ -379,7 +411,8 @@ class _CheckoutState extends State<Checkout> {
                                     checkoutCantroller.selectedImage.value = 3;
                                   });
                                 },
-                                child: checkoutCantroller.selectedImage.value == 3
+                                child: checkoutCantroller.selectedImage.value ==
+                                        3
                                     ? SvgPicture.asset(
                                         'assets/svg/vHapppBold.svg')
                                     : SvgPicture.asset('assets/svg/vHappy.svg'),
@@ -390,8 +423,8 @@ class _CheckoutState extends State<Checkout> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -418,6 +451,7 @@ class _CheckoutState extends State<Checkout> {
                             ),
                             onPressed: () async {
                               // Handle Back to Home action
+                              checkoutCantroller.selectedImage.value = 0;
                               await cartManager.clearList();
                               Navigator.pushAndRemoveUntil(
                                   context,

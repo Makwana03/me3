@@ -66,18 +66,18 @@ class CartManager extends GetxController {
         bool idExists = matchedIndex != -1;
         if (idExists) {
           increaseQuantity(matchedIndex, context);
-          CommonSnackBar.show(context, 'Quentity Incrise ');
+          CommonSnackBar.show(context, 'Added to cart');
           matchedIndex = -1;
           // show snackbar for incrise quentity
         } else {
           // show snack bar for add new element
-          CommonSnackBar.show(context!, 'New Item Added To Cart');
+          CommonSnackBar.show(context!, 'Added to cart');
 
           items.value?.add(newItem);
           matchedIndex = -1;
         }
       } else {
-        CommonSnackBar.show(context!, 'New Item Added To Cart');
+        CommonSnackBar.show(context , 'Added to cart');
 
         // show snack bar for add new element
         items.value?.add(newItem);

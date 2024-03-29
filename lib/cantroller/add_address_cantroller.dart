@@ -58,12 +58,14 @@ class AddAdressCantroller extends GetxController {
         SharedPreferencesHelper sharedPreferencesHelper =
             SharedPreferencesHelper(sharedPreferences);
         sharedPreferencesHelper.putString(Preferences.userAdd, response.body);
-        print(userAddress.value.toString());
+        print(userAddress.value!.data.address.toString());
         print(userAddress.value!.data);
+        gUserData = userAddress.value;
+        Navigator.of(context).pop();
         count += 1;
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => Checkout(),
-        ));
+        // Navigator.of(context).pushReplacement(MaterialPageRoute(
+        //   builder: (context) => const Checkout(),
+        // ));
       } else {
         var encodeBody = jsonDecode(response.body);
         print(encodeBody['message']);

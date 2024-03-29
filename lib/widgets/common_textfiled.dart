@@ -21,6 +21,7 @@ class CommonTextFormField extends StatelessWidget {
   final bool initialValue;
   final bool autoFocus;
   final bool isOTPField;
+  final bool isZipCode;
 
   final List<TextInputFormatter> formatter;
   final bool isMobileNumber;
@@ -45,6 +46,7 @@ class CommonTextFormField extends StatelessWidget {
     this.initialValue = false,
     this.autoFocus = false,
     this.isOTPField = false,
+    this.isZipCode = false,
   });
 
   final TextStyle labelStyle = const TextStyle(
@@ -119,7 +121,13 @@ class CommonTextFormField extends StatelessWidget {
           if (newVal!.isEmpty || newVal.length < 10) {
             return errorMessage;
           }
-        } else if (isEmailField) {
+        }
+        else if(isZipCode){
+          if (newVal!.isEmpty || newVal.length < 6) {
+            return errorMessage;
+          }
+        }
+         else if (isEmailField) {
           if (newVal!.isEmpty || !Utility.isEmailValid(newVal)) {
             return errorMessage;
           } else {}

@@ -39,15 +39,15 @@ class GridItem extends StatelessWidget {
                   width: double.maxFinite,
                   // height: 200,
                 ),
-                Positioned(
-                  bottom: -10,
-                  right: -10,
-                  child: IconButton(
-                    icon: const Icon(Icons.favorite_border),
-                    color: goldColor,
-                    onPressed: () {},
-                  ),
-                ),
+                // Positioned(
+                //   bottom: -10,
+                //   right: -10,
+                //   child: IconButton(
+                //     icon: const Icon(Icons.favorite_border),
+                //     color: goldColor,
+                //     onPressed: () {},
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(
@@ -60,7 +60,7 @@ class GridItem extends StatelessWidget {
                 fontFamily: 'mp',
                 fontWeight: FontWeight.normal,
                 overflow: TextOverflow.ellipsis,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
             Padding(
